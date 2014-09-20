@@ -1,13 +1,40 @@
 * {
-    margin:0 0 0 0;
+    margin: 0 0 0 0;
 }
 
 body {
     background: #ebebeb;
 }
 
+.header{
+    width:100%;
+    height:85px;
+    margin:0 auto;
+    margin-top:20px;
+    text-align:center;
+}
+
 .container {
     width:80%;
+    height:100%;
     margin:0 auto;
     overflow:auto;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.7);
+    -moz-box-shadow:    0px 0px 5px 0px rgba(50, 50, 50, 0.7);
+    box-shadow:         0px 0px 5px 0px rgba(50, 50, 50, 0.7);
+}
+
+.content {
+    margin-top:1px;
+    margin-bottom:1px;
+    height:100%;
+    min-height:740px;
+}
+
+.login_form_wrapper {
+    width:400px;
+    height:300px;
+    margin:0 auto;
+    text-align:center;
+    padding-top:170px;
 }

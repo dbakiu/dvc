@@ -15,16 +15,18 @@
 
 <body>
 
+
 <div class="container">
 
-
+    <div class="header">
+        {{ HTML::image("images/header.png", "Header") }}
+    </div>
 
     <div class="content">
         @yield('content')
     </div>
 
     <div class="clear"></div>
-
 
 </div>
 

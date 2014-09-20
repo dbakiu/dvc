@@ -2,98 +2,33 @@
 
 class SessionController extends \BaseController {
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
-    public function index()
-    {
-        //
+    public function index(){
+        return $this->create();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
     public function create()
     {
+        if(Auth::check()){
+            return View::make('home.index');
+        }
         return View::make('home.login');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @return Response
-     */
     public function store()
     {
-
-
-        $staff = array('name' => Input::get('name'),
+        $admin = array('name' => Input::get('name'),
             'password' => Input::get('password'));
 
-
-
-        if(Auth::attempt($staff)){
-
-         #   $adminInfo = User::where('name', '=', Input::get('name'))->get();
-
-            return Response::json(true);
+        if(Auth::attempt($admin)){
+            Auth::user();
+            return View::make('home.index');
         }
-
-        return Response::json(false);
-
-
-
+        return View::make('home.login');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function update($id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function destroy()
-    {
-
+    public function destroy(){
         Auth::logout();
-
-       # return Redirect::route('index')->with('flash_message', 'Се одјавивте успешно.');
+        return View::make('home.login');
     }
 
 }
