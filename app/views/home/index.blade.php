@@ -2,12 +2,8 @@
 
 @section('content')
 
-<div class="homepage">
+<div class="home_page">
     <p>Welcome.</p>
-
-    {{ Form::open( ['route' => 'logout', 'method' => 'get' ] ) }}
-    {{ Form::submit('Sign out') }}
-    {{ Form::close() }}
 
 </div>
 

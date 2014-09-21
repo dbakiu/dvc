@@ -3,10 +3,9 @@
 Route::group(['before' => 'auth'], function()
 {
     Route::resource('home', 'HomeController@index');
-});
 
-#Route::get('login', 'SessionController@create');
-#Route::get('logout', 'SessionController@destroy');
+    Route::resource('employee', 'EmployeeController');
+});
 
 Route::resource('/', 'SessionController@index');
 Route::resource('sessions', 'SessionController');

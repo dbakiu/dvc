@@ -16,11 +16,14 @@
 <body>
 
 
+
 <div class="container">
 
-    <div class="header">
-        {{ HTML::image("images/header.png", "Header") }}
-    </div>
+    @if(Auth::user())
+    @include('layout.menu')
+    @endif
+
+    @include('layout.header')
 
     <div class="content">
         @yield('content')

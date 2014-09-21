@@ -17,11 +17,11 @@ class SessionController extends \BaseController {
     public function store()
     {
         $admin = array('name' => Input::get('name'),
-            'password' => Input::get('password'));
+                       'password' => Input::get('password'));
 
         if(Auth::attempt($admin)){
             Auth::user();
-            return View::make('home.index');
+            return Redirect::to('home');
         }
         return View::make('home.login');
     }
