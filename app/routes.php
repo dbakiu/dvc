@@ -3,8 +3,10 @@
 Route::group(['before' => 'auth'], function()
 {
     Route::resource('home', 'HomeController@index');
-
     Route::resource('employee', 'EmployeeController');
+    Route::resource('invoice', 'InvoiceController');
+    Route::resource('vehicle', 'VehicleController');
+    Route::resource('balance', 'BalanceController');
 });
 
 Route::resource('/', 'SessionController@index');

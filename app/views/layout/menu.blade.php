@@ -27,7 +27,7 @@
                     <a href="#">Expenses</a>
                 </li>
                 <li>
-                    <a href="#">Balance sheet</a>
+                    <a href="#">Balance sheets</a>
                 </li>
             </ul>
 

@@ -8,4 +8,15 @@ class EmployeeController extends BaseController {
         return View::make('employee.index');
     }
 
+    public function create(){
+        return View::make('employee.add');
+    }
+
+    public function store(){
+
+    }
+
+    public function show($id){
+
+    }
 }

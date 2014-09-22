@@ -44,3 +44,19 @@ body {
     padding-top:170px;
 }
 
+.home_page_menu{
+    padding-left:0;
+    list-style:none
+}
+
+.home_page_menu li {
+    float: left;
+    width: 12.5%;
+    height: 115px;
+    padding: 10px;
+    margin-left:10px;
+    line-height: 1.4;
+    text-align: center;
+    background-color: #e5e5e5;
+    border: 1px solid #cecece;}
+
