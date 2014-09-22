@@ -16,12 +16,12 @@
 <body>
 
 
-
-<div class="container">
-
     @if(Auth::user())
     @include('layout.menu')
     @endif
+
+<div class="container">
+
 
     @include('layout.header')
 

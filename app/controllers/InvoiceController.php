@@ -12,10 +12,8 @@ class InvoiceController extends BaseController {
     }
 
     public function store(){
-        // TODO
-        // Add storing and pdf output
-        #$pdf = PDF::loadView('invoice.pdf');
-        #return $pdf->download('invoice.pdf');
+        // store invoice data
+        // $this->downloadPdf($invoiceKey);
     }
 
     public function show($id){
@@ -27,6 +25,13 @@ class InvoiceController extends BaseController {
     }
 
     public function destroy($id){
+
+    }
+
+    public function downloadPdf($invoiceId){
+        // $invoiceData = get all data for the specific invoice id
+        // $pdf = PDF::loadView('invoice.pdf', $invoiceData);
+        // return $pdf->download('invoice.pdf');
 
     }
 

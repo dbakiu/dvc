@@ -5,7 +5,7 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class User extends Eloquent implements UserInterface, RemindableInterface {
+class Employee extends Eloquent implements UserInterface, RemindableInterface {
 
 	use UserTrait, RemindableTrait, SoftDeletingTrait;
 
@@ -14,20 +14,34 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 *
 	 * @var string
 	 */
-	protected $table = 'users';
+	protected $table = 'employees';
 
     protected $dates = ['deleted_at'];
 
     protected $fillable = array(
         'id',
-        'name',
-        'password');
+        'name');
+
 
     /**
 	 * The attributes excluded from the model's JSON form.
 	 *
 	 * @var array
 	 */
-	protected $hidden = array('password', 'remember_token');
+	protected $hidden = array('remember_token');
+
+
+    public function addEmployee($employeeData){
+        $this->name = $employeeData['name'];
+        $this->id = $employeeData['id'];
+        $result = $this->save();
+
+        return $result;
+    }
+
+    public function updateEmployee($employeeData){
+
+    }
+
 
 }
