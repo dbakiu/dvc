@@ -7,6 +7,7 @@ Route::group(['before' => 'auth'], function()
     Route::resource('invoice', 'InvoiceController');
     Route::resource('vehicle', 'VehicleController');
     Route::resource('balance', 'BalanceController');
+    Route::resource('expense', 'ExpenseController');
 });
 
 Route::resource('/', 'SessionController@index');

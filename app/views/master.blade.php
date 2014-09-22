@@ -14,15 +14,10 @@
 </head>
 
 <body>
-
-
     @if(Auth::user())
     @include('layout.menu')
     @endif
-
 <div class="container">
-
-
     @include('layout.header')
 
     <div class="content">

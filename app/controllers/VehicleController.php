@@ -13,10 +13,32 @@ class VehicleController extends BaseController {
 
     public function store(){
         $vehicleData['id'] = str_random(50);
+
         $vehicleData['type'] = Input::get('type');
-        $price = Input::get('price');
-        $vehicleData['price'] = number_format((float)$price, 2, '.', ''); // Round to the nearest second decimal.
-        $vehicleData['employee_percentage'] = Input::get('employee_percentage');
+
+        if(is_numeric(Input::get('price'))) {
+            $price = Input::get('price');
+            $vehicleData['price'] = number_format((float)$price, 2, '.', ''); // Round to the nearest second decimal.
+        }
+        else{
+            $vehicleData['price'] = 0;
+        }
+
+        if(is_numeric(Input::get('employee_percentage'))){
+
+            if(Input::get('employee_percentage') > 100){
+                $percentage = 100;
+                $vehicleData['employee_percentage'] = $percentage;
+            }
+            else {
+                $vehicleData['employee_percentage'] = Input::get('employee_percentage');
+            }
+
+        }
+        else{
+            $vehicleData['employee_percentage'] = 0;
+        }
+
 
         $vehicle = new Vehicle();
 

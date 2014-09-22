@@ -6,13 +6,12 @@
 
     {{ Form::label('type', 'Type') }}
     {{ Form::text('type', $vehicleData->type, ['placeholder' => 'Type'] ) }}
-
-    {{ Form::label('price', 'Type') }}
+    <br/>
+    {{ Form::label('price', 'Price') }}
     {{ Form::text('price', $vehicleData->price, ['placeholder' => 'Price'] ) }}
-    
+    <br/>
     {{ Form::label('employee_percentage', 'Employees percentage') }}
     {{ Form::text('employee_percentage', $vehicleData->employee_percentage, ['placeholder' => 'Employees percentage'] ) }}
-
     <br />
     <br />
     {{ Form::submit('Update') }}

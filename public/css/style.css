@@ -66,6 +66,10 @@ body {
     line-height: 15px;
     margin-top:5px;
 }
+.center_form_wrapper label {
+    line-height: 20px;
+    color: #676767;
+}
 
 .employee_profile{
     width:50%;
@@ -74,14 +78,13 @@ body {
 }
 
 
-.home_page_menu{
-    padding-left:0;
-    list-style:none
+.home_page_menu {
+    list-style: none;
 }
 
 .home_page_menu li {
     float: left;
-    width: 12.5%;
+    width: 18.5%;
     height: 115px;
     padding: 10px;
     margin-left:10px;

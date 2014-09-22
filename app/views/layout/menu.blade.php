@@ -15,12 +15,13 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li class="dropdown">
-                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Employees<span class="caret"></span></a>
+                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Invoices<span class="caret"></span></a>
                      <ul class="dropdown-menu" role="menu">
-                       <li><a href="{{ route('employee.index') }}">Employees list</a></li>
-                       <li><a href="{{ route('employee.create') }}">Add employee</a></li>
+                       <li><a href="{{ route('employee.index') }}">Invoices list</a></li>
+                       <li><a href="{{ route('employee.create') }}">New invoice</a></li>
                      </ul>
                 </li>
+
                 <li class="dropdown">
                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Vehicles<span class="caret"></span></a>
                      <ul class="dropdown-menu" role="menu">
@@ -29,10 +30,10 @@
                      </ul>
                 </li>
                 <li class="dropdown">
-                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Invoices<span class="caret"></span></a>
+                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Employees<span class="caret"></span></a>
                      <ul class="dropdown-menu" role="menu">
-                       <li><a href="{{ route('employee.index') }}">Invoices list</a></li>
-                       <li><a href="{{ route('employee.create') }}">New invoice</a></li>
+                       <li><a href="{{ route('employee.index') }}">Employees list</a></li>
+                       <li><a href="{{ route('employee.create') }}">Add employee</a></li>
                      </ul>
                 </li>
                 <li class="dropdown">
@@ -45,7 +46,13 @@
                 <li>
                     <a href="#">Balance sheets</a>
                 </li>
-
+                <li class="dropdown">
+                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Backup<span class="caret"></span></a>
+                     <ul class="dropdown-menu" role="menu">
+                       <li><a href="{{ route('employee.index') }}">Export database</a></li>
+                       <li><a href="{{ route('employee.create') }}">Import database</a></li>
+                     </ul>
+                </li>
             </ul>
 
             <div class="logout_button">
