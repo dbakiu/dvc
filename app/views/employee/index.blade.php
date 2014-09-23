@@ -9,7 +9,7 @@
         <th>Edit</th>
         <th>Delete</th>
         </thead>
-        <tbody class="search_results">
+        <tbody>
 
         @foreach ($employees as $employee)
 

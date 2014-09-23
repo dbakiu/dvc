@@ -62,13 +62,27 @@ body {
     text-align:center;
 }
 
-.center_form_wrapper input[type = "text"]{
+.center_form_wrapper input[type = "text"],
+.center_form_wrapper select,
+.invoice_form_wrapper input[type = "text"],
+.invoice_form_wrapper select{
     line-height: 15px;
     margin-top:5px;
 }
 .center_form_wrapper label {
     line-height: 20px;
     color: #676767;
+}
+
+.invoice_form_wrapper{
+    width:70%;
+    margin:0 auto;
+    margin-top:30px;
+}
+
+.invoice_elements_wrapper{
+    width:100%;
+    border-top:1px solid #000000;
 }
 
 .employee_profile{
@@ -106,9 +120,13 @@ body {
     text-align:left !important;
 }
 
+.flat_table_1{
+    width:80% !important;
+}
+
 .flat_table th, .flat_table td {
     box-shadow: inset 0 -1px rgba(0,0,0,0.10),
-    inset 0 1px rgba(0,0,0,0.10);
+    inset 0 0px rgba(0,0,0,0.10);
     margin-left:10px;
 }
 .flat_table th {

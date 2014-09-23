@@ -8,7 +8,11 @@ class InvoiceController extends BaseController {
     }
 
     public function create(){
-       return View::make('invoice.add');
+        $vehiclesList = Vehicle::getVehiclesList();
+        $vehiclesPricelist = Vehicle::getVehiclesPricelist();
+        $employeesList = Employee::getEmployeesList();
+
+        return View::make('invoice.add')->with(['vehiclesList' => $vehiclesList, 'vehiclesPricelist' => $vehiclesPricelist, 'employeesList' => $employeesList]);
     }
 
     public function store(){

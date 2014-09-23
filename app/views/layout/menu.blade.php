@@ -17,8 +17,8 @@
                 <li class="dropdown">
                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Invoices<span class="caret"></span></a>
                      <ul class="dropdown-menu" role="menu">
-                       <li><a href="{{ route('employee.index') }}">Invoices list</a></li>
-                       <li><a href="{{ route('employee.create') }}">New invoice</a></li>
+                       <li><a href="{{ route('invoice.index') }}">Invoices list</a></li>
+                       <li><a href="{{ route('invoice.create') }}">New invoice</a></li>
                      </ul>
                 </li>
 

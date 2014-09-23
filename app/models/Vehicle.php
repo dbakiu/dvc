@@ -43,6 +43,15 @@ class Vehicle extends Eloquent implements UserInterface, RemindableInterface {
         return $result;
     }
 
+    public static function getVehiclesList(){
+        $vehicleList = Vehicle::orderBy('type', 'asc')->lists('type','id');
+        return $vehicleList;
+    }
+
+    public static function getVehiclesPricelist(){
+        $vehiclesPricelist = Vehicle::orderBy('type', 'asc')->lists('price', 'id');
+        return $vehiclesPricelist;
+    }
 
 
 }

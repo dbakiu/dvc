@@ -3,7 +3,7 @@
 {{ HTML::script('js/vehicle-script.js') }}
 
 <div class="center_form_wrapper">
-    <p class="center_form_title">Add new vehicle type</p>
+    <p class="center_form_title">new vehicle type</p>
     {{ Form::open( ['route' => 'vehicle.store'] ) }}
 
     {{ Form::text('type', null, ['placeholder' => 'Name'] ) }}

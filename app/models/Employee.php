@@ -43,5 +43,10 @@ class Employee extends Eloquent implements UserInterface, RemindableInterface {
 
     }
 
+    public static function getEmployeesList(){
+        $employeesList = Employee::orderBy('name', 'asc')->lists('name','id');
+        return $employeesList;
+    }
+
 
 }
