@@ -10,18 +10,19 @@
 
     {{ Form::label('employee_fk', 'Employee')  }}
     {{ Form::select('employee_fk', $employeesList, null,  ['id' => 'employee_fk']  ) }}
+    {{ Form::label('invoice_number', 'Invoice nr.') }}
+    {{ $invoiceNumber }}
     <br />
-    <hr />
-    {{ Form::text('valeted_date', null, ['id' => 'valeted_date', 'placeholder' => 'Date']) }}
-    {{ Form::text('quantity', null, ['id' => 'quantity', 'placeholder' => 'Quantity']) }}
 
+    <hr />
     {{ Form::label('vehicle_fk', 'Vehicle type')  }}
     {{ Form::select('vehicle_fk', $vehiclesList, null, ['id' => 'vehicle_fk']  ) }}
 
+    {{ Form::text('quantity', null, ['id' => 'quantity', 'placeholder' => 'Quantity']) }}
 
     {{ Form::select('vehicles_pricelist', $vehiclesPricelist, null, ['id' => 'vehicles_pricelist', 'class' => 'hidden']  ) }}
 
-
+     {{ Form::text('valeted_date', null, ['id' => 'valeted_date', 'placeholder' => 'Date']) }}
     {{ Form::button('Add', ['id' => 'add_element']) }}
 
     <div class="invoice_elements_wrapper">
@@ -40,7 +41,9 @@
     </div>
       {{ Form::text('elements_list', null, ['id' => 'elements_list', 'class' => 'hidden']) }}
 
+    {{ Form::submit('Store invoice')  }}
     </div>
+
     {{ Form::close() }}
 </div>
 

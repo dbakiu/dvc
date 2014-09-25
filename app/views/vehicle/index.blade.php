@@ -4,7 +4,7 @@
 
 <div class="vehicle_page">
 
-    <table class="flat_table flat_table_1">
+    <table class="flat_table">
         <thead>
         <th>Vehicle type</th>
         <th>Price</th>

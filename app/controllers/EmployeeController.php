@@ -29,7 +29,10 @@ class EmployeeController extends BaseController {
 
     public function show($id){
         $employeeData = Employee::find($id);
-        return View::make('employee.profile')->with('employeeData', $employeeData);
+        $processedVehicles = InvoiceElement::where('employee_fk', '=', $employeeData->id)->count();
+        return View::make('employee.profile')->with(['employeeData' => $employeeData,
+                                                    'processedVehicles' => $processedVehicles]
+                                                    );
     }
 
     public function edit($id){
