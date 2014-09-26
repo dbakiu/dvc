@@ -2,30 +2,53 @@
 @section('content')
 {{ HTML::script('js/invoice-script.js') }}
 
+
+
 <div class="invoice_form_wrapper">
-    <p class="center_form_title">New invoice</p>
+    <p class="center_form_title">Invoice number: {{ $invoiceNumber }}</p>
     {{ Form::open(['route' => 'invoice.store']) }}
+    <div class="invoice_info">
+    <span class="invoice_left">
+    {{ Form::label('bill_to',  'Company name' ) }} <br/>
+    {{ Form::label('date',  'Invoice date' ) }} <br/>
+    {{ Form::label('employee_fk', 'Employee')  }} <br/>
+    </span>
+
+    <span class="invoice_right">
     {{ Form::text('bill_to', null, ['placeholder' => 'Bill to'] ) }}
-    {{ Form::text('date', null, ['placeholder' => 'Invoice date'] ) }}
-
-    {{ Form::label('employee_fk', 'Employee')  }}
+    <br/>
+    {{ Form::text('date', null, ['placeholder' => 'Invoice date', 'id' => 'date'] ) }}
+    <br/>
     {{ Form::select('employee_fk', $employeesList, null,  ['id' => 'employee_fk']  ) }}
-    {{ Form::label('invoice_number', 'Invoice nr.') }}
-    {{ $invoiceNumber }}
-    <br />
-
+    </span>
+    </div>
+    <div class="clear"></div>
     <hr />
-    {{ Form::label('vehicle_fk', 'Vehicle type')  }}
-    {{ Form::select('vehicle_fk', $vehiclesList, null, ['id' => 'vehicle_fk']  ) }}
 
-    {{ Form::text('quantity', null, ['id' => 'quantity', 'placeholder' => 'Quantity']) }}
+    <div class="invoice_info">
+    <span class="invoice_left">
+    {{ Form::label('vehicle_fk', 'Vehicle type')  }}<br/>
+    {{ Form::label('quantity', 'Quantity')  }}<br/>
+    {{ Form::label('valeted_date', 'Valeted on')  }}<br/>
+    </span>
+
+    <span class="invoice_right">
+    {{ Form::select('vehicle_fk', $vehiclesList, null, ['id' => 'vehicle_fk']  ) }} <br/>
+
+    {{ Form::text('quantity', null, ['id' => 'quantity', 'placeholder' => 'Quantity']) }} <br/>
+
+    {{ Form::text('valeted_date', null, ['id' => 'valeted_date', 'placeholder' => 'Date']) }} <br/>
 
     {{ Form::select('vehicles_pricelist', $vehiclesPricelist, null, ['id' => 'vehicles_pricelist', 'class' => 'hidden']  ) }}
+    </span>
+    <div class="clear"></div>
+    {{ Form::button('Add', ['id' => 'add_element', 'class' => 'center_button']) }}
 
-     {{ Form::text('valeted_date', null, ['id' => 'valeted_date', 'placeholder' => 'Date']) }}
-    {{ Form::button('Add', ['id' => 'add_element']) }}
+    </div>
 
-    <div class="invoice_elements_wrapper">
+    <div class="clear"></div>
+
+    <div class="invoice_elements_wrapper" id="invoice_elements_wrapper">
          <table class="flat_table flat_table_1">
             <thead>
                 <th>QTY</th>
@@ -35,13 +58,28 @@
                 <th>#</th>
             </thead>
              <tbody id="invoice_elements">
-
             </tbody>
-        </table>
-    </div>
-      {{ Form::text('elements_list', null, ['id' => 'elements_list', 'class' => 'hidden']) }}
 
-    {{ Form::submit('Store invoice')  }}
+        </table>
+        <div class="invoice_totals">
+             <label for="subtotal">Subtotal: £</label>
+             <span id="subtotal"></span>
+             <br/>
+             <label for="vat">VAT:</label>
+             <span id="vat">20%</span>
+             <br/>
+             <label for="total_sum">Total: £</label>
+             <span id="total_sum"></span>
+             <br/>
+        </div>
+        {{ Form::submit('Store invoice', ['class' => 'center_button'])  }}
+    </div>
+
+      {{ Form::text('elements_list', null, ['id' => 'elements_list', 'class' => 'hidden']) }}
+      {{-- Add $vatAmount as a variable that can be changed from the panel --}}
+      {{ Form::text('vat_hidden', '20', ['id' => 'vat_hidden', 'class' => 'hidden']) }}
+
+
     </div>
 
     {{ Form::close() }}

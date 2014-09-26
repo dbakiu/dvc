@@ -63,13 +63,19 @@ body {
 }
 
 .center_form_wrapper input[type = "text"],
-.center_form_wrapper select,
-.invoice_form_wrapper input[type = "text"],
-.invoice_form_wrapper select{
+.center_form_wrapper select{
     line-height: 15px;
     margin-top:5px;
 }
-.center_form_wrapper label {
+
+.invoice_form_wrapper input[type = "text"],
+.invoice_form_wrapper select{
+    line-height:15px;
+    margin-top:2px;
+}
+
+.center_form_wrapper label,
+.invoice_form_wrapper label{
     line-height: 20px;
     color: #676767;
 }
@@ -82,8 +88,28 @@ body {
 
 .invoice_elements_wrapper{
     width:100%;
-    border-top:1px solid #000000;
+    display:none;
 }
+
+.invoice_info{
+    width:50%;
+    margin:0 auto;
+}
+
+.invoice_left{
+    float:left;
+}
+
+.invoice_right{
+    float:right;
+}
+
+.invoice_totals{
+    width:50%;
+    margin:0 auto;
+    text-align:right;
+}
+
 
 .employee_profile{
     width:50%;
@@ -143,4 +169,15 @@ body {
     font-size: 1em;
 }
 
+.clear{
+    clear:both;
+}
 
+.center_button{
+    margin:0 auto;
+    display: block;
+}
+
+@media (max-width: 1200px) {
+
+}

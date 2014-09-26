@@ -10,11 +10,21 @@ $(document).ready(function(){
     });
 
 
-    // Functions
-
+    // Constants
     var counter = 1;
+    var totalSum = parseFloat(0);
+    var subtotal = parseFloat(0);
+    var hiddenVat = $('#vat_hidden').val();
+    hiddenVat = 1 + '.' + hiddenVat;
+    hiddenVat = parseFloat(hiddenVat);
+    // Functions
     function addElement(){
         console.log('adding element');
+
+        if( $(".invoice_elements_wrapper").css('display') == 'none'){
+            $('#invoice_elements_wrapper').toggle();
+        }
+
 
         var date = $('#valeted_date').val();
         var quantity = $('#quantity').val();
@@ -22,16 +32,23 @@ $(document).ready(function(){
         var vehicle_fk = $('#vehicle_fk').val();
         var vehicle_type  = $('#vehicle_fk option:selected').text();
 
-        var unit_price = getVehiclePrice();
-        if(quantity > 0) {
+        var unit_price = parseFloat(0);
+        unit_price = getVehiclePrice();
+
+        var quantityStr = '';
+
+        if(quantity > 1) {
             var line_total = quantity * unit_price;
+            quantityStr = 'cars';
         }
         else{
+            quantity = 1;
+            quantityStr = 'car';
             var line_total = unit_price;
         }
 
         $("#invoice_elements").append('<tr><td>' + quantity + '</td>'
-                                    + '<td>' + quantity  + ' cars valeted on ' + date + ' ' + vehicle_type + '</td>'
+                                    + '<td>' + quantity + ' ' + quantityStr  + ' valeted on ' + date + ' - ' + vehicle_type + '</td>'
                                     + '<td>£' + unit_price + '</td>'
                                     + '<td>£' + line_total + '</td>'
                                     + '<td>' + '<input type="button" id="' + counter + '" class="delete_element" value="X">' + '</td>'
@@ -40,12 +57,20 @@ $(document).ready(function(){
         var invoice_element = {
                                 'index' : counter,
                                 'quantity' : quantity,
+                                'price' : unit_price,
                                 'vehicle_fk' : vehicle_fk,
                                 'date' : date
                               };
 
         storeInvoiceElement(invoice_element);
         counter++;
+
+        // Refresh the subtotal and total amount displayed on the page.
+        subtotal += parseFloat(line_total);
+        totalSum = parseFloat(subtotal * hiddenVat);
+
+        refreshSubtotalTotal(subtotal, totalSum);
+        clearFields();
     }
 
 
@@ -56,32 +81,56 @@ $(document).ready(function(){
         $(thisObj).closest("tr").remove();
 
         var targetElement = thisObj.attr('id');
+        var targetPrice = parseFloat(0);
+        var targetQuantity = 0;
+
         var currentList = $.parseJSON($('#elements_list').val());
         var arrayLength = currentList.length;
 
         for (var i = 0; i < arrayLength; i++) {
             // If it's an actual object that contains the "index" element, proceed.
             if(currentList[i]['index']) {
+
                 if (currentList[i]['index'] == targetElement) {
+                    targetPrice = parseFloat(currentList[i]['price']);
+                    targetQuantity = parseInt(currentList[i]['quantity']);
                     currentList.splice(i, 1);
+
+                    // Update the array length when the item gets deleted.
+                    arrayLength = currentList.length;
                 }
             }
         }
 
         $('#elements_list').val(JSON.stringify(currentList));
         console.log(currentList);
+
+        subtotal = parseFloat(subtotal - (targetQuantity * targetPrice));
+        totalSum = parseFloat(subtotal * hiddenVat);
+        refreshSubtotalTotal(subtotal, totalSum);
+    }
+
+
+    function clearFields(){
+        $('#valeted_date').val('');
+        $('#quantity').val('');
+    }
+
+    function refreshSubtotalTotal(subtotal, totalSum){
+            $('#subtotal').text(subtotal.toFixed(1));
+            $('#total_sum').text(totalSum.toFixed(1));
     }
 
 
     function getVehiclePrice(){
-        console.log('getting the price')
+        console.log('getting the price');
 
         var selectedVehicle = $('#vehicle_fk').val();
         // Get the price for the selected vehicle.
         $("#vehicles_pricelist").val(selectedVehicle);
         var price = $('#vehicles_pricelist option:selected').text();
 
-        return price;
+        return parseFloat(price);
     }
 
 
@@ -116,11 +165,17 @@ $(document).ready(function(){
         $('#elements_list').val('[' + newList + ']');
 
     }
+    $(function() {
+        $('#date').datepicker();
+    });
 
+    $(function(){
+       $('#valeted_date').datepicker();
+    });
 
 // Client-side check if the quantity is a numeric value.
     $("#quantity").keydown(function (e) {
-        if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+        if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110]) !== -1 ||
             (e.keyCode == 65 && e.ctrlKey === true) ||
             (e.keyCode >= 35 && e.keyCode <= 39)) {
             return;
@@ -129,4 +184,6 @@ $(document).ready(function(){
             e.preventDefault();
         }
     });
+
+
 });

@@ -3,12 +3,13 @@
 
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-
+    {{HTML::style('css/bootstrap.min.css')}}
+    {{HTML::style('css/style.css')}}
+    {{HTML::style('css/datepicker.css')}}
 
     {{HTML::script('js/jquery-2.1.0.min.js')}}
     {{HTML::script('js/bootstrap.min.js')}}
-    {{HTML::style('css/bootstrap.min.css')}}
-    {{HTML::style('css/style.css')}}
+    {{HTML::script('js/bootstrap-datepicker.js')}}
 
     <title>Diamond Valeting Contracts - Management System</title>
 </head>
