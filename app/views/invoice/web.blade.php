@@ -93,7 +93,7 @@
     </div>
         <div class="pdf_footer">
         <div class="footer_vat">
-            vat number
+            Vat number: 162157815
         </div>
 
         <div class="footer_message">

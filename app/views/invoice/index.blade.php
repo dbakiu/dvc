@@ -35,6 +35,11 @@
     @endif
     </tbody>
     </table>
+        <div class="invoice_pagination">
+            @if(isset($invoiceList))
+            {{ $invoiceList->links(); }}
+            @endif
+        </div>
 </div>
 
 @stop

@@ -4,7 +4,8 @@ class InvoiceController extends BaseController {
 
 
     public function index(){
-        $invoiceList = Invoice::all()->toArray();
+        // fix the web/pdf rendering
+        $invoiceList = Invoice::orderBy('date', 'desc')->paginate(25);
 
         return View::make('invoice.index')->with('invoiceList', $invoiceList);
     }
@@ -131,8 +132,6 @@ class InvoiceController extends BaseController {
                                             'invoiceElements' => $invoiceElements,
                                             'elementData' => $elementData,
                                             'employeeInfo' => $employeeInfo]);
-         return $pdf->download('invoice.pdf');
-
+         return $pdf->download($invoiceInfo->date . ' - ' . $invoiceInfo->bill_to . '.pdf');
     }
-
 }

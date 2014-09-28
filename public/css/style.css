@@ -174,9 +174,14 @@ body {
     clear:both;
 }
 
-.center_button{
+.center_button,
+.invoice_pagination{
     margin:0 auto;
     display: block;
+}
+
+.invoice_pagination{
+    width:150px;
 }
 
 hr{

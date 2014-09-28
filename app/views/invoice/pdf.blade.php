@@ -50,7 +50,7 @@
 
     <div class="clear"></div>
 
-    <div class="invoice_elements">
+    <div class="invoice_elements_pdf">
     <table class="pdf_table">
         <tr class="thead">
             <th colspan=1 rowspan=1>QTY</th>
@@ -77,7 +77,6 @@
 
             <?php $subtotal += $element->quantity *  $elementData[$element->vehicle_fk]['price']; ?>
 
-            <?php $subtotal += $element->quantity *  $elementData[$element->vehicle_fk]['price']; ?>
         @endforeach
             <?php
                 $total = $subtotal * 1.20;
@@ -86,27 +85,31 @@
         </tbody>
 
     </table>
-    <div class="clear"></div>
+
     </div>
 
     <div class="clear"></div>
-    </div>
-          <div class="pdf_footer">
-          <div class="footer_vat">
-              vat number
-          </div>
 
-          <div class="footer_message">
-              thank you for your business
-          </div>
+             <div class="pdf_footer_pdf">
 
-          <div class="footer_price">
-              <table class="totals_table">
-                  <tr><td class="special">SUBTOTAL</td> <td>£{{ $subtotal }}</td></tr>
-                  <tr><td class="special">VAT: 20%</td> <td>£{{ $vat }} </td></tr>
-                  <tr><td class="special">TOTAL</td> <td>£{{ $total }} </td></tr>
-              </table>
-          </div>
-    <div class="clear"></div>
-          </div>
+              <div class="footer_vat pdf_vat">
+                  Vat number: 162157815
+              </div>
+
+              <div class="footer_message pdf_message">
+                  <p>thank you for your business</p>
+              </div>
+
+              <div class="footer_price pdf_price">
+                  <table class="totals_table_pdf">
+                      <tr><td class="first">SUBTOTAL</td> <td class="first right">£{{ $subtotal }}</td></tr>
+                      <tr><td class="second">VAT: 20%</td> <td class="second right">£{{ $vat }} </td></tr>
+                      <tr><td class="last">TOTAL</td> <td class="last right">£{{ $total }} </td></tr>
+                  </table>
+              </div>
+
+
+             </div>
+
+</div>
 </div>
