@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="vehicle_page">
-
+    <p class="center_form_title">Vehicle pricelist</p>
     <table class="flat_table">
         <thead>
         <th>Vehicle type</th>

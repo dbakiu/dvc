@@ -1,0 +1,154 @@
+* {
+    margin: 0 0 0 0;
+}
+
+body {
+    background: #ffffff;
+}
+
+.pdf_wrapper{
+    width:720px;
+    height:1040px; /* Has to be a fixed value, otherwise the pdf rendering gets weird. */
+    border:3px solid #000000;
+    margin:35px;
+}
+
+.pdf_web{
+    margin:35px auto !important;
+    margin-top:0 !important;
+}
+.pdf_header_wrapper{
+    background:#cccceb;
+    width:100%;
+    height:100px;
+    margin:0 auto;
+}
+
+.header_logo{
+    float:left;
+    width:100px;
+}
+
+.header_text{
+    float:right;
+    width:300px;
+    margin-top:15px;
+    margin-right:190px;
+}
+
+.contact_info{
+    float:right;
+    width:160px;
+    text-align:center;
+    margin-right:50px;
+    margin-top:30px;
+    font-size:20px;
+}
+
+.title{
+    float:left;
+    width:100px;
+    margin-top:30px;
+    margin-left:40px;
+    font-size:30px;
+    color:#0088cc;
+}
+
+.invoice_info{
+    width:250px;
+    margin-left:20px;
+    margin-top:30px;
+    font-size:20px;
+}
+
+.company_name{
+    width:180px;
+    margin: 0 auto;
+    margin-top:20px;
+    font-size:20px;
+    text-align:center;
+}
+
+.invoice_elements_header{
+    width:100%;
+}
+.invoice_elements{
+    height:580px;
+}
+.pdf_table{
+    width:95%;
+    margin:0 auto;
+    margin-top:20px;
+    border:1px solid black;
+    border-collapse: collapse;
+
+}
+.thead{
+    background:#caeefe;
+}
+.pdf_table th{
+    padding:3px;
+    height:20px;
+    border:1px solid #000000;
+}
+
+.pdf_table td{
+    border-left:1px solid #000000;
+    border-bottom:none;
+    border-collapse: inherit;
+}
+
+.pdf_footer {
+    width:950px;
+    margin-bottom:0;
+}
+
+.totals_table{
+    border:1px solid #000000;
+    border-collapse: collapse;
+    font-size:14px;
+}
+
+.totals_table td{
+    padding:3px;
+    border:1px solid #000000;
+    border-collapse: collapse;
+}
+.special{
+    border-left:0 !important;
+    border-top:0 !important;
+    border-bottom:0 !important;
+}
+
+.footer_vat{
+    float:left;
+    width:20%;
+    text-align:left;
+    border:1px solid red;
+}
+
+.footer_message{
+    float:left;
+    width:40%;
+    text-align:center;
+    text-transform: uppercase;
+    border:1px solid blue;
+
+}
+
+.footer_price{
+    float:left;
+    width:13%;
+    text-align:right;
+    border:1px solid green;
+}
+
+.clear{
+    clear:both;
+}
+
+.tiny{
+    width:100%;
+    height:10px;
+    background:black;
+}

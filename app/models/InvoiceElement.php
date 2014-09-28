@@ -38,10 +38,12 @@ class InvoiceElement extends Eloquent implements UserInterface, RemindableInterf
         $this->vehicle_fk = $elementData['vehicle_fk'];
         $this->invoice_fk = $elementData['invoice_fk'];
         $this->date = $elementData['date'];
-
         $result = $this->save();
-
         return $result;
+    }
+
+    public static function getInvoiceElements($id){
+        return DB::select(DB::raw("SELECT vehicle_fk, employee_fk, date, COUNT(*) as quantity FROM employees_vehicles WHERE invoice_fk = '$id' GROUP BY vehicle_fk, date"));
     }
 
 }

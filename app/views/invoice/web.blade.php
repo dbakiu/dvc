@@ -1,8 +1,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-
-
 {{ HTML::style('css/style_pdf.css') }}
-<div class="pdf_wrapper">
+<div class="pdf_wrapper pdf_web">
     <div class="pdf_header_wrapper">
 
        <span class="header_logo">
@@ -44,9 +42,8 @@
     <p class="company_name">Bill to:
         {{ $invoiceInfo->bill_to }}
     </p>
+
     </div>
-
-
 
     <div class="clear"></div>
 
@@ -59,54 +56,58 @@
             <th colspan=1 rowspan=1>LINE TOTAL</th>
         </tr>
         <tbody>
-        <?php $total = $subtotal = $vat = 0; ?>
-         @foreach($invoiceElements as $element)
 
-                @if($element->quantity == 1)
-                    <?php $carsStr = 'car' ?>
-                @else
-                    <?php $carsStr = 'cars' ?>
-                @endif
+        <?php $subtotal = $total = $vat = 0; ?>
+
+         @foreach($invoiceElements as $element)
+            @if($element->quantity > 1)
+               <?php $carsStr = 'cars'; ?>
+            @else
+                <?php $carsStr = 'car'; ?>
+            @endif
+
             <tr>
                 <td>{{ $element->quantity }}</td>
-                <td>{{ $element->quantity . ' ' . $carsStr . ' valeted on ' . $element->date . ' - ' .  $elementData[$element->vehicle_fk]['type'] }}</td>
-                <td>{{ '£' . $elementData[$element->vehicle_fk]['price'] }}</td>
+                <td>{{ $element->quantity . ' ' . $carsStr . ' valeted on ' . date('d/m/Y', strtotime($element->date)) . ' - ' . $elementData[$element->vehicle_fk]['type'] }}</td>
+                <td>{{ '£' .  $elementData[$element->vehicle_fk]['price'] }}</td>
                 <td>{{ '£' . $element->quantity *  $elementData[$element->vehicle_fk]['price'] }}</td>
 
             </tr>
-
-            <?php $subtotal += $element->quantity *  $elementData[$element->vehicle_fk]['price']; ?>
-
             <?php $subtotal += $element->quantity *  $elementData[$element->vehicle_fk]['price']; ?>
         @endforeach
             <?php
                 $total = $subtotal * 1.20;
                 $vat = $subtotal * 0.20;
              ?>
+
+
+
         </tbody>
 
     </table>
-    <div class="clear"></div>
+
     </div>
 
     <div class="clear"></div>
+
     </div>
-          <div class="pdf_footer">
-          <div class="footer_vat">
-              vat number
-          </div>
+        <div class="pdf_footer">
+        <div class="footer_vat">
+            vat number
+        </div>
 
-          <div class="footer_message">
-              thank you for your business
-          </div>
+        <div class="footer_message">
+            thank you for your business
+        </div>
 
-          <div class="footer_price">
-              <table class="totals_table">
-                  <tr><td class="special">SUBTOTAL</td> <td>£{{ $subtotal }}</td></tr>
-                  <tr><td class="special">VAT: 20%</td> <td>£{{ $vat }} </td></tr>
-                  <tr><td class="special">TOTAL</td> <td>£{{ $total }} </td></tr>
-              </table>
-          </div>
-    <div class="clear"></div>
-          </div>
+        <div class="footer_price">
+            <table class="totals_table">
+                <tr><td class="special">SUBTOTAL</td> <td>£{{ $subtotal }}</td></tr>
+                <tr><td class="special">VAT: 20%</td> <td>£{{ $vat }} </td></tr>
+                <tr><td class="special">TOTAL</td> <td>£{{ $total }} </td></tr>
+            </table>
+        </div>
+
+        </div>
+
 </div>

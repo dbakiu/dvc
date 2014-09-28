@@ -45,7 +45,7 @@ class EmployeeController extends BaseController {
         $employee->name = Input::get('name');
         $employee->save();
 
-        return View::make('employee.profile')->with('employeeData', $employee);
+        return $this->show($id);
     }
 
     public function destroy($id){

@@ -23,7 +23,9 @@ class Invoice extends Eloquent implements UserInterface, RemindableInterface {
         'invoice_number',
         'bill_to',
         'date',
-        'employee_fk'
+        'employee_fk',
+        'subtotal',
+        'total'
         );
 
 
@@ -37,7 +39,7 @@ class Invoice extends Eloquent implements UserInterface, RemindableInterface {
 
 
     public static function getLastInvoiceNumber(){
-        $lastInvoiceNumber = Invoice::orderBy('date', 'asc')->pluck('invoice_number');
+        $lastInvoiceNumber = Invoice::orderBy('created_at', 'desc')->pluck('invoice_number');
         return $lastInvoiceNumber;
     }
 
@@ -47,6 +49,8 @@ class Invoice extends Eloquent implements UserInterface, RemindableInterface {
         $this->bill_to = $invoiceData['bill_to'];
         $this->date = $invoiceData['date'];
         $this->employee_fk = $invoiceData['employee_fk'];
+        $this->subtotal = $invoiceData['subtotal'];
+        $this->total = $invoiceData['total'];
 
         $result = $this->save();
         return $result;

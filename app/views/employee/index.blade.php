@@ -3,6 +3,7 @@
 @section('content')
 
 <div class="employees_page">
+    <p class="center_form_title">Employees</p>
     <table class="flat_table">
         <thead>
         <th>Employee</th>
