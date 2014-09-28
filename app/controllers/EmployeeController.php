@@ -30,8 +30,20 @@ class EmployeeController extends BaseController {
     public function show($id){
         $employeeData = Employee::find($id);
         $processedVehicles = InvoiceElement::where('employee_fk', '=', $employeeData->id)->count();
+
+        $totalSalary = Employee::getSalary($id);
+
+        $totalSum = 0;
+        foreach($totalSalary as $item){
+            $priceForVehicle = Vehicle::getPriceForVehicle($item->vehicle_fk);
+            $employeesCut = Vehicle::getEmployeesCut($item->vehicle_fk);
+
+            $totalSum += ($priceForVehicle * ($employeesCut/100));
+        }
+
         return View::make('employee.profile')->with(['employeeData' => $employeeData,
-                                                    'processedVehicles' => $processedVehicles]
+                                                    'processedVehicles' => $processedVehicles,
+                                                    'totalSum' => $totalSum]
                                                     );
     }
 
@@ -57,6 +69,52 @@ class EmployeeController extends BaseController {
         else{
             return $this->index();
         }
+    }
+
+    public function checkEarnings($id){
+
+        $startDate = $start = Input::get('startDate');
+        $endDate = $end = Input::get('endDate');
+
+        $start = date('Y-m-d', strtotime($start));
+        $end = date('Y-m-d', strtotime($end));
+
+        // Get the owed sum for the given range.
+        $salaryForRange = Employee::getSalaryRange($id, $start, $end);
+
+        $rangeSum = 0;
+        $rangeValetedVehicles = 0;
+        foreach($salaryForRange as $item){
+            $priceForVehicle = Vehicle::getPriceForVehicle($item->vehicle_fk);
+            $employeesCut = Vehicle::getEmployeesCut($item->vehicle_fk);
+
+            $rangeSum += ($priceForVehicle * ($employeesCut/100));
+            $rangeValetedVehicles += 1;
+        }
+
+        $employeeData = Employee::find($id);
+        $processedVehicles = InvoiceElement::where('employee_fk', '=', $employeeData->id)->count();
+
+        $totalSalary = Employee::getSalary($id);
+
+
+        // Get the rest of the information.
+        $totalSum = 0;
+        foreach($totalSalary as $item){
+            $priceForVehicle = Vehicle::getPriceForVehicle($item->vehicle_fk);
+            $employeesCut = Vehicle::getEmployeesCut($item->vehicle_fk);
+
+            $totalSum += ($priceForVehicle * ($employeesCut/100));
+        }
+
+        return View::make('employee.profile')->with(['employeeData' => $employeeData,
+                'processedVehicles' => $processedVehicles,
+                'totalSum' => $totalSum,
+                'rangeSum' => $rangeSum,
+                'startDate' => $startDate,
+                'endDate' => $endDate,
+                'rangeValetedVehicles' => $rangeValetedVehicles]
+        );
     }
 
 }

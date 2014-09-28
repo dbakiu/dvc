@@ -14,9 +14,9 @@ $(document).ready(function(){
     var counter = 1;
     var totalSum = parseFloat(0);
     var subtotal = parseFloat(0);
-    var hiddenVat = $('#vat_hidden').val();
-    hiddenVat = 1 + '.' + hiddenVat;
-    hiddenVat = parseFloat(hiddenVat);
+    var totalVat = parseFloat(0);
+    var hiddenVat = parseFloat(1.20);
+
     // Functions
     function addElement(){
         console.log('adding element');
@@ -68,8 +68,9 @@ $(document).ready(function(){
         // Refresh the subtotal and total amount displayed on the page.
         subtotal += parseFloat(line_total);
         totalSum = parseFloat(subtotal * hiddenVat);
+        totalVat = parseFloat(subtotal * 0.20);
 
-        refreshSubtotalTotal(subtotal, totalSum);
+        refreshSubtotalTotal(subtotal, totalSum, totalVat);
         clearFields();
     }
 
@@ -107,7 +108,8 @@ $(document).ready(function(){
 
         subtotal = parseFloat(subtotal - (targetQuantity * targetPrice));
         totalSum = parseFloat(subtotal * hiddenVat);
-        refreshSubtotalTotal(subtotal, totalSum);
+        totalVat = parseFloat(subtotal * 0.20);
+        refreshSubtotalTotal(subtotal, totalSum, totalVat);
     }
 
 
@@ -116,9 +118,10 @@ $(document).ready(function(){
         $('#quantity').val('');
     }
 
-    function refreshSubtotalTotal(subtotal, totalSum){
+    function refreshSubtotalTotal(subtotal, totalSum, totalVat){
             $('#subtotal').text(subtotal.toFixed(1));
             $('#total_sum').text(totalSum.toFixed(1));
+            $('#vat').text(totalVat.toFixed(1));
     }
 
 

@@ -65,8 +65,8 @@
              <label for="subtotal">Subtotal: £</label>
              <span id="subtotal"></span>
              <br/>
-             <label for="vat">VAT:</label>
-             <span id="vat">20%</span>
+             <label for="vat">VAT: 20%</label>
+             <span id="vat"></span>
              <br/>
              <label for="total_sum">Total: £</label>
              <span id="total_sum"></span>
@@ -76,7 +76,7 @@
     </div>
 
       {{ Form::text('elements_list', null, ['id' => 'elements_list', 'class' => 'hidden']) }}
-      {{-- Add $vatAmount as a variable that can be changed from the panel --}}
+
       {{ Form::text('vat_hidden', '20', ['id' => 'vat_hidden', 'class' => 'hidden']) }}
 
 

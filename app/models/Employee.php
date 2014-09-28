@@ -39,14 +39,18 @@ class Employee extends Eloquent implements UserInterface, RemindableInterface {
         return $result;
     }
 
-    public function updateEmployee($employeeData){
-
-    }
 
     public static function getEmployeesList(){
         $employeesList = Employee::orderBy('name', 'asc')->lists('name','id');
         return $employeesList;
     }
 
+    public static function getSalary($id){
+        return InvoiceElement::getProcessedVehiclesForEmployee($id);
+    }
+
+    public static function getSalaryRange($id, $start, $end){
+        return InvoiceElement::getProcessedVehiclesForEmployeeFromTo($id, $start, $end);
+    }
 
 }

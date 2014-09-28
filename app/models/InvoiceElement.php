@@ -43,7 +43,28 @@ class InvoiceElement extends Eloquent implements UserInterface, RemindableInterf
     }
 
     public static function getInvoiceElements($id){
-        return DB::select(DB::raw("SELECT vehicle_fk, employee_fk, date, COUNT(*) as quantity FROM employees_vehicles WHERE invoice_fk = '$id' GROUP BY vehicle_fk, date"));
+        return DB::select(DB::raw("SELECT vehicle_fk, employee_fk, date, COUNT(*) as quantity
+                                  FROM employees_vehicles
+                                  WHERE invoice_fk = '$id'
+                                  GROUP BY vehicle_fk, date")
+                        );
     }
 
+    public static function getProcessedVehiclesForEmployee($id){
+        return DB::select(DB::raw("SELECT vehicle_fk, date, COUNT(*) as quantity
+                                  FROM employees_vehicles
+                                  WHERE employee_FK = '$id'
+                                  GROUP BY vehicle_fk ")
+                        );
+    }
+
+    public static function getProcessedVehiclesForEmployeeFromTo($id, $start, $end){
+        return DB::select(DB::raw("SELECT vehicle_fk, date, COUNT(*) as quantity
+                                    FROM employees_vehicles
+                                    WHERE employee_fk = '$id'
+                                    AND date >= '$start'
+                                    AND date <= '$end'
+                                    GROUP BY vehicle_fk"));
+    }
 }
+
