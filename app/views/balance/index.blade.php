@@ -1,45 +1,59 @@
 @extends('master')
-
 @section('content')
 
-<div class="balance_page">
-  <p class="center_form_title">Expenses</p>
-        <table class="flat_table">
-            <thead>
-              <th>Invoice nr.</th>
-              <th>View</th>
-              <th>Download</th>
-              <th>Company</th>
-              <th>Date</th>
-              <th>Total amount</th>
-              <th>Delete<th>
-             </thead>
-            <tbody>
+{{ HTML::script('js/balance-script.js') }}
 
-    {{--@if($invoiceList)
-        @foreach($invoiceList as $invoice)
-        <tr>
-            <td> {{ $invoice['invoice_number'] }} </td>
-            <td> {{ link_to_route('invoice.show', 'View', $invoice['id'] ) }} </td>
-             <td> {{ link_to_route('invoice.download', 'Download', $invoice['id'] ) }} </td>
-             <td> {{ $invoice['bill_to'] }} </td>
-             <td> {{  date("d/m/Y", strtotime($invoice['date'])) }} </td>
-             <td> {{ '£' . $invoice['total'] }} </td>
-              <td>
-                {{ Form::open([ 'route' => ['invoice.destroy', $invoice['id']], 'method' => 'delete' ] ) }}
-                    <button type="submit" href="{{  route('invoice.destroy', 'Delete', $invoice['id'] ) }}" class="btn btn-danger btn-mini">Delete</button>
-                {{ Form::close() }}
-                </td>
-             </tr>
-        @endforeach
+<div class="balance_page">
+    @if(isset($startDate))
+        <p class="center_form_title">Balance for {{ $startDate }} to {{ $endDate }}</p>
+    @else
+            <p class="center_form_title">Total balance</p>
     @endif
-    --}}
-    </tbody>
-    </table>
-        <div class="invoice_pagination">
-            @if(isset($invoiceList))
-            {{ $invoiceList->links(); }}
-            @endif
+      <div class="balance_wrapper">
+
+        <a href="{{ route('invoice.index') }}">
+            <div class="balance_in btn btn-primary">
+                <span class="total_sum_in">IN:  £{{ $totalIncome }}</span>
+            </div>
+        </a>
+
+        <a href="{{ route('expense.index') }}">
+            <div class="balance_out btn btn-info">
+                <span class="total_sum_out">OUT:  £{{ $totalExpenses }}</span>
+            </div>
+        </a>
+
+        <div class="clear"></div>
+        <hr/>
+        @if( $totalBalance > 0)
+        <div class="balance_total btn btn-success">
+            <span class="total_sum_balance">BALANCE:  £{{ $totalBalance }}</span>
         </div>
+
+        @elseif( $totalBalance > 0 && $totalBalance < 100)
+        <div class="balance_total btn btn-warning">
+            <span class="total_sum_balance">BALANCE:  £{{ $totalBalance }}</span>
+        </div>
+        @else
+        <div class="balance_total btn btn-danger">
+            <span class="total_sum_balance">BALANCE:  £{{ $totalBalance }}</span>
+        </div>
+        @endif
+
+        <div class="employee_form_wrapper">
+         <p class="center_form_title">Check balance</p>
+        {{ Form::open([ 'route' => ['balance.check'], 'method' => 'post' ] ) }}
+            {{ Form::label('startDate', 'Start date:') }}
+            {{ Form::text('startDate', null, ['id' => 'start_date']) }}
+            {{ Form::label('endDate', 'End date:') }}
+            {{ Form::text('endDate', null, ['id' => 'end_date']) }}
+            <br/><br/>
+            {{ Form::submit('Check') }}
+        {{ Form::close() }}
+        </div>
+
+
+      </div>
+
 </div>
 @stop

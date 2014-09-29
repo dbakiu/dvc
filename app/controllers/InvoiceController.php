@@ -4,8 +4,7 @@ class InvoiceController extends BaseController {
 
 
     public function index(){
-        // fix the web/pdf rendering
-        $invoiceList = Invoice::orderBy('date', 'desc')->paginate(25);
+        $invoiceList = Invoice::orderBy('date', 'desc')->paginate(12);
 
         return View::make('invoice.index')->with('invoiceList', $invoiceList);
     }
@@ -14,8 +13,7 @@ class InvoiceController extends BaseController {
         $vehiclesList = Vehicle::getVehiclesList();
         $vehiclesPricelist = Vehicle::getVehiclesPricelist();
         $employeesList = Employee::getEmployeesList();
-        $invoiceNumber = Invoice::getLastInvoiceNumber();
-        $invoiceNumber = (int)$invoiceNumber + 1;
+        $invoiceNumber = Invoice::getNewInvoiceNumber();
 
         return View::make('invoice.add')->with(['vehiclesList' => $vehiclesList,
                                                 'vehiclesPricelist' => $vehiclesPricelist,
@@ -24,8 +22,6 @@ class InvoiceController extends BaseController {
     }
 
     public function store(){
-
-
         $invoiceId = str_random(50);
 
         $invoiceElementsList = Input::get('elements_list');

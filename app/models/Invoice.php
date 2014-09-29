@@ -36,11 +36,9 @@ class Invoice extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 	protected $hidden = array('remember_token');
 
-
-
-    public static function getLastInvoiceNumber(){
+    public static function getNewInvoiceNumber(){
         $lastInvoiceNumber = Invoice::orderBy('created_at', 'desc')->pluck('invoice_number');
-        return $lastInvoiceNumber;
+        return $lastInvoiceNumber + 1;
     }
 
     public function addInvoice($invoiceData){
@@ -54,6 +52,16 @@ class Invoice extends Eloquent implements UserInterface, RemindableInterface {
 
         $result = $this->save();
         return $result;
+    }
+
+    public static function getTotalIncome(){
+        $totalIncome = Invoice::all()->sum('total');
+        return $totalIncome;
+    }
+
+    public static function getTotalIncomeFromTo($start, $end){
+        $totalIncome = Invoice::where('date', '>=', $start)->where('date', '<=', $end)->sum('total');
+        return $totalIncome;
     }
 
 

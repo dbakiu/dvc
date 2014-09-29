@@ -39,12 +39,12 @@
                 <li class="dropdown">
                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Expenses<span class="caret"></span></a>
                      <ul class="dropdown-menu" role="menu">
-                       <li><a href="{{ route('employee.index') }}">Add expense report</a></li>
-                       <li><a href="{{ route('employee.create') }}">View expense reports</a></li>
+                       <li><a href="{{ route('expense.index') }}">Expenses list</a></li>
+                       <li><a href="{{ route('expense.create') }}">Add expense</a></li>
                      </ul>
                 </li>
                 <li>
-                    <a href="#">Balance sheets</a>
+                    <a href="{{ route('balance.index'); }}">Balance</a>
                 </li>
                 <li class="dropdown">
                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Backup<span class="caret"></span></a>

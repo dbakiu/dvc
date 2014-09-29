@@ -9,6 +9,7 @@ Route::group(['before' => 'auth'], function()
     Route::get('invoice/{invoice}/pdf', ['as' => 'invoice.download', 'uses' => 'InvoiceController@download']);
     Route::resource('vehicle', 'VehicleController');
     Route::resource('balance', 'BalanceController');
+    Route::post('balance/check', ['as' => 'balance.check', 'uses' => 'BalanceController@checkBalance']);
 
     Route::resource('expense', 'ExpenseController');
 });

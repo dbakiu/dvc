@@ -46,6 +46,7 @@ class InvoiceElement extends Eloquent implements UserInterface, RemindableInterf
         return DB::select(DB::raw("SELECT vehicle_fk, employee_fk, date, COUNT(*) as quantity
                                   FROM employees_vehicles
                                   WHERE invoice_fk = '$id'
+                                  AND deleted_at IS NULL
                                   GROUP BY vehicle_fk, date")
                         );
     }
@@ -54,6 +55,7 @@ class InvoiceElement extends Eloquent implements UserInterface, RemindableInterf
         return DB::select(DB::raw("SELECT vehicle_fk, date, COUNT(*) as quantity
                                   FROM employees_vehicles
                                   WHERE employee_FK = '$id'
+                                  AND deleted_at IS NULL
                                   GROUP BY vehicle_fk ")
                         );
     }
@@ -64,6 +66,7 @@ class InvoiceElement extends Eloquent implements UserInterface, RemindableInterf
                                     WHERE employee_fk = '$id'
                                     AND date >= '$start'
                                     AND date <= '$end'
+                                    AND deleted_at IS NULL
                                     GROUP BY vehicle_fk"));
     }
 }
