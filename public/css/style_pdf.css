@@ -57,7 +57,7 @@ body {
 .invoice_info{
     width:250px;
     margin-left:20px;
-    margin-top:30px;
+    margin-top:10px;
     font-size:20px;
 }
 
@@ -73,7 +73,7 @@ body {
     width:100%;
 }
 .invoice_elements{
-    height:580px;
+    height:570px;
 }
 
 .invoice_elements_pdf{
@@ -106,14 +106,15 @@ body {
 .pdf_footer {
     width:950px;
     padding:10px;
-    padding-top:0;
+    margin-top:-40px;
 }
 
 .pdf_footer_pdf{
     width:700px;
     padding:10px;
-    padding-top:0;
+    padding-top:-10;
     margin-left:40px;
+
 }
 
 .totals_table{
@@ -126,7 +127,6 @@ body {
 .totals_table td{
     padding:3px;
     border:1px solid #000000;
-    border-collapse: collapse;
 }
 
 .totals_table_pdf{

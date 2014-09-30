@@ -17,7 +17,20 @@ Route::group(['before' => 'auth'], function()
         return Redirect::to('home')->with('message', 'The database has been backed up.');
     }]);
 
-});
+    Route::get('restore', ['as' => 'database.restore', function() {
+        // Empty all tables bar the users
+        // Vehicle::truncate();
+        // Expense::truncate();
+        // Invoice::truncate();
+        // InvoiceElement::truncate();
+        // Employee::truncate();
+
+        // Seed the database from the latest seed file.
+        // Artisan::call('db:seed', ['--force' => true]);
+        return Redirect::to('home')->with('message', 'Contact tech support.');
+    }]);
+
+    });
 
 Route::resource('/', 'SessionController@index');
 Route::resource('sessions', 'SessionController');

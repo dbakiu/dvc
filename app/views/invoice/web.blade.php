@@ -36,6 +36,8 @@
     <p class="invoice_info">
          INVOICE: #{{ $employeeInfo->name }}
          <br/>
+         INVOICE NR: {{ $invoiceInfo->invoice_number }}
+         <br/>
          INVOICE DATE:  {{ date('d/m/Y', strtotime($invoiceInfo->date))  }}
     </p>
 

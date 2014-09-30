@@ -25,7 +25,11 @@
 
             <td>
                 {{ Form::open([ 'route' => ['employee.destroy', $employee->id], 'method' => 'delete' ] ) }}
-                    <button type="submit" href="{{  route('employee.destroy', 'Delete', $employee->id ) }}" class="btn btn-danger btn-mini">Delete</button>
+                    <button type="submit" href="{{  route('employee.destroy', 'Delete', $employee->id ) }}"
+                        class="btn btn-danger btn-mini"
+                        onclick="return confirm('Are you sure you want to delete that item?');">
+                        Delete
+                        </button>
                 {{ Form::close() }}
             </td>
 

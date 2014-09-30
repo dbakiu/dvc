@@ -28,7 +28,11 @@
               <td> {{ '£' . $expense->sum }} </td>
                <td>
                  {{ Form::open([ 'route' => ['expense.destroy', $expense->id], 'method' => 'delete' ] ) }}
-                     <button type="submit" href="{{  route('invoice.destroy', 'Delete', $expense->id ) }}" class="btn btn-danger btn-mini">Delete</button>
+                     <button type="submit" href="{{  route('invoice.destroy', 'Delete', $expense->id ) }}"
+                        class="btn btn-danger btn-mini"
+                        onclick="return confirm('Are you sure you want to delete that item?');">
+                        Delete
+                        </button>
                  {{ Form::close() }}
                  </td>
               </tr>

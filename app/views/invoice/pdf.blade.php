@@ -12,9 +12,6 @@
        <span class="header_text">
             {{HTML::image('images/header_pdf.png')}}
        </span>
-
-    <div class="clear"></div>
-
     </div>
     <div class="clear"></div>
 
@@ -37,6 +34,8 @@
 
     <p class="invoice_info">
          INVOICE: #{{ $employeeInfo->name }}
+         <br/>
+         INVOICE NR: {{ $invoiceInfo->invoice_number }}
          <br/>
          INVOICE DATE:  {{ date('d/m/Y', strtotime($invoiceInfo->date))  }}
     </p>
