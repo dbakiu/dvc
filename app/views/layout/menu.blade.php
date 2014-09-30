@@ -49,8 +49,8 @@
                 <li class="dropdown">
                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Backup<span class="caret"></span></a>
                      <ul class="dropdown-menu" role="menu">
-                       <li><a href="{{ route('employee.index') }}">Export database</a></li>
-                       <li><a href="{{ route('employee.create') }}">Import database</a></li>
+                       <li><a href="{{ route('database.backup') }}">Backup database</a></li>
+                       <li><a href="{{ route('database.restore') }}">Restore database</a></li>
                      </ul>
                 </li>
             </ul>

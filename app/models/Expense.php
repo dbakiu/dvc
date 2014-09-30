@@ -20,6 +20,7 @@ class Expense extends Eloquent implements UserInterface, RemindableInterface {
 
     protected $fillable = array(
         'expense_number',
+        'company_name',
         'item',
         'date',
         'sum'
@@ -36,6 +37,7 @@ class Expense extends Eloquent implements UserInterface, RemindableInterface {
     public function addExpense($expenseData){
         $this->id = $expenseData['id'];
         $this->expense_number = $expenseData['expense_number'];
+        $this->company_name = $expenseData['company_name'];
         $this->item = $expenseData['item'];
         $this->sum = $expenseData['sum'];
         $this->date = $expenseData['date'];

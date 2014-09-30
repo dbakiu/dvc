@@ -17,6 +17,7 @@ class ExpenseController extends BaseController {
 
         $expenseId = str_random(50);
         $expenseNumber = Expense::getNewExpenseNumber();
+        $companyName = Input::get('companyName');
         $item = Input::get('item');
         $sum = floatval(Input::get('sum'));
         $date = date('Y-m-d', strtotime(Input::get('date')));
@@ -25,6 +26,7 @@ class ExpenseController extends BaseController {
         $expenseData = [
                         'id' => $expenseId,
                         'expense_number' => $expenseNumber,
+                        'company_name' => $companyName,
                         'item' => $item,
                         'sum' => $sum,
                         'date' => $date
@@ -33,6 +35,11 @@ class ExpenseController extends BaseController {
         $expense->addExpense($expenseData);
 
         return $this->index();
+    }
+
+    public function show($id){
+        $expenseData = Expense::find($id);
+        return View::make('expense.view')->with('expenseData', $expenseData);
     }
 
     public function destroy($id){

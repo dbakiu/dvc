@@ -8,6 +8,8 @@
     {{ Form::open( ['route' => 'expense.store'] ) }}
     <div class="expense_info">
     <span class="invoice_left">
+        {{ Form::label('companyName', 'Company') }}
+        <br/>
         {{ Form::label('name', 'Item name') }}
         <br/>
         {{ Form::label('sum', 'Total sum') }}
@@ -16,6 +18,8 @@
     </span>
 
     <span class="invoice_right">
+        {{ Form::text('companyName', null, ['placeholder' => 'Company name'] ) }}
+        <br/>
         {{ Form::text('item', null, ['placeholder' => 'Item name', 'class' => 'long_input'] ) }}
         <br/>
         {{ Form::text('sum', null, ['placeholder' => 'Sum'] ) }}

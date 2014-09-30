@@ -25,7 +25,7 @@
 
         <div class="clear"></div>
         <hr/>
-        @if( $totalBalance > 0)
+        @if( $totalBalance > 0 && $totalBalance > 100)
         <div class="balance_total btn btn-success">
             <span class="total_sum_balance">BALANCE:  £{{ $totalBalance }}</span>
         </div>

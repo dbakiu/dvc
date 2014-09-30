@@ -2,7 +2,7 @@
 
 Route::group(['before' => 'auth'], function()
 {
-    Route::resource('home', 'HomeController@index');
+    Route::resource('home', 'HomeController');
     Route::resource('employee', 'EmployeeController');
     Route::post('employee/{employee}/check', ['as' => 'employee.check', 'uses' => 'EmployeeController@checkEarnings']);
     Route::resource('invoice', 'InvoiceController');
@@ -10,8 +10,13 @@ Route::group(['before' => 'auth'], function()
     Route::resource('vehicle', 'VehicleController');
     Route::resource('balance', 'BalanceController');
     Route::post('balance/check', ['as' => 'balance.check', 'uses' => 'BalanceController@checkBalance']);
-
     Route::resource('expense', 'ExpenseController');
+
+    Route::get('backup', ['as' => 'database.backup', function(){
+        DbExportHandler::migrate()->ignore('users')->seed();
+        return Redirect::to('home')->with('message', 'The database has been backed up.');
+    }]);
+
 });
 
 Route::resource('/', 'SessionController@index');
@@ -19,7 +24,6 @@ Route::resource('sessions', 'SessionController');
 
 Route::get('login', ['as' => 'login', 'uses' => 'SessionController@create']);
 Route::get('logout', ['as' => 'logout', 'uses' => 'SessionController@destroy']);
-
 
 
 

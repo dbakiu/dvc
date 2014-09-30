@@ -147,15 +147,31 @@ body {
 .home_page_menu li {
     float: left;
     width: 18.5%;
-    height: 115px;
+    height: 60px;
     padding: 10px;
     margin-left:10px;
     line-height: 1.4;
     text-align: center;
-    background-color: #e5e5e5;
-    border: 1px solid #cecece;
 }
 
+.expense_page{
+    width:80%;
+    margin:0 auto;
+}
+
+.expense_view{
+    width:50%;
+    text-align:center;
+    margin:0 auto;
+}
+.expense_description{
+    width:60%;
+    margin:0 auto;
+    margin-top:30px;
+}
+.expense_description{
+    font-size:15px;
+}
 
 .flat_table {
     width:50%;
