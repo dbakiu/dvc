@@ -8,9 +8,9 @@
 
     {{ Form::text('type', null, ['placeholder' => 'Name'] ) }}
     <br />
-    {{ Form::text('price', null, ['placeholder' => 'Price', 'id' => 'price']) }}
+    £{{ Form::text('price', null, ['placeholder' => 'Price', 'id' => 'price']) }}
     <br />
-    {{ Form::text('employee_percentage', null, ['placeholder' => 'Employees percentage', 'id' => 'employee_percentage']) . '%' }}
+    £{{ Form::text('employee_percentage', null, ['placeholder' => 'Employees cut', 'id' => 'employee_percentage']) }}
     <br />
     <br />
 

@@ -50,7 +50,7 @@ $(document).ready(function(){
         $("#invoice_elements").append('<tr><td>' + quantity + '</td>'
                                     + '<td>' + quantity + ' ' + quantityStr  + ' valeted on ' + date + ' - ' + vehicle_type + '</td>'
                                     + '<td>£' + unit_price + '</td>'
-                                    + '<td>£' + line_total + '</td>'
+                                        + '<td>£' + line_total + '</td>'
                                     + '<td>' + '<input type="button" id="' + counter + '" class="delete_element" value="X">' + '</td>'
                                     + '</tr>');
 

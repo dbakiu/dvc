@@ -10,8 +10,8 @@
     {{ Form::label('price', 'Price') }}
     {{ Form::text('price', $vehicleData->price, ['placeholder' => 'Price'] ) }}
     <br/>
-    {{ Form::label('employee_percentage', 'Employees percentage') }}
-    {{ Form::text('employee_percentage', $vehicleData->employee_percentage, ['placeholder' => 'Employees percentage'] ) }}
+    {{ Form::label('employee_percentage', 'Employees cut') }}
+    {{ Form::text('employee_percentage', $vehicleData->employee_percentage, ['placeholder' => 'Employees cut'] ) . '£' }}
     <br />
     <br />
     {{ Form::submit('Update') }}

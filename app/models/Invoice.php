@@ -60,9 +60,9 @@ class Invoice extends Eloquent implements UserInterface, RemindableInterface {
     }
 
     public static function getTotalIncomeFromTo($start, $end){
-        $totalIncome = Invoice::where('date', '>=', $start)->where('date', '<=', $end)->sum('total');
-        return $totalIncome;
-    }
+    $totalIncome = Invoice::where('date', '>=', $start)->where('date', '<=', $end)->sum('total');
+    return $totalIncome;
+}
 
 
 }

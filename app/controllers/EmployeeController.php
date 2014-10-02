@@ -32,13 +32,11 @@ class EmployeeController extends BaseController {
         $processedVehicles = InvoiceElement::where('employee_fk', '=', $employeeData->id)->count();
 
         $totalSalary = Employee::getSalary($id);
-
         $totalSum = 0;
         foreach($totalSalary as $item){
-            $priceForVehicle = Vehicle::getPriceForVehicle($item->vehicle_fk);
             $employeesCut = Vehicle::getEmployeesCut($item->vehicle_fk);
-
-            $totalSum += ($priceForVehicle * ($employeesCut/100));
+            #echo $totalSum . ' + ' . $employeesCut . ' * ' . $item->quantity . ' = ' .($employeesCut * $item->quantity) .  '<br/>';
+            $totalSum = $totalSum + ($employeesCut * $item->quantity);
         }
 
         return View::make('employee.profile')->with(['employeeData' => $employeeData,
@@ -88,8 +86,9 @@ class EmployeeController extends BaseController {
             $priceForVehicle = Vehicle::getPriceForVehicle($item->vehicle_fk);
             $employeesCut = Vehicle::getEmployeesCut($item->vehicle_fk);
 
-            $rangeSum += ($priceForVehicle * ($employeesCut/100));
-            $rangeValetedVehicles += 1;
+            $rangeSum = $rangeSum + ($employeesCut * $item->quantity);
+            // Calculate the number of processed vehicles.
+            $rangeValetedVehicles += $item->quantity;
         }
 
         $employeeData = Employee::find($id);
@@ -101,10 +100,10 @@ class EmployeeController extends BaseController {
         // Get the rest of the information.
         $totalSum = 0;
         foreach($totalSalary as $item){
-            $priceForVehicle = Vehicle::getPriceForVehicle($item->vehicle_fk);
+           # $priceForVehicle = Vehicle::getPriceForVehicle($item->vehicle_fk);
             $employeesCut = Vehicle::getEmployeesCut($item->vehicle_fk);
 
-            $totalSum += ($priceForVehicle * ($employeesCut/100));
+            $totalSum = $totalSum + ($employeesCut * $item->quantity);
         }
 
         return View::make('employee.profile')->with(['employeeData' => $employeeData,

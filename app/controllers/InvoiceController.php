@@ -4,9 +4,11 @@ class InvoiceController extends BaseController {
 
 
     public function index(){
-        $invoiceList = Invoice::orderBy('date', 'desc')->paginate(12);
+        $invoiceList = Invoice::orderBy('created_at', 'desc')->paginate(12);
+        $employeesList = Employee::getEmployeesObjectList();
 
-        return View::make('invoice.index')->with('invoiceList', $invoiceList);
+        return View::make('invoice.index')->with(['invoiceList' => $invoiceList,
+                                                    'employeesList' => $employeesList]);
     }
 
     public function create(){
@@ -62,9 +64,13 @@ class InvoiceController extends BaseController {
             'total' => $total
         ];
 
-        $newInvoice->addInvoice($invoiceData);
-
-        return $this->index();
+        $result = $newInvoice->addInvoice($invoiceData);
+        if($result == true) {
+            return $this->index();
+        }
+        else{
+            return Redirect::to('invoice.index')->with('message', 'The invoice could not be added. Please try again.');
+        }
 
     }
 
@@ -77,11 +83,11 @@ class InvoiceController extends BaseController {
         $elementData = [];
 
         foreach($invoiceElements as $element){
-            $price = Vehicle::where('id', '=', $element->vehicle_fk)->pluck('price');
-            $type = Vehicle::where('id', '=', $element->vehicle_fk)->pluck('type');
+            $price = Vehicle::withTrashed()->where('id', '=', $element->vehicle_fk)->pluck('price');
+            $type = Vehicle::withTrashed()->where('id', '=', $element->vehicle_fk)->pluck('type');
 
             $elementData[$element->vehicle_fk] = ['type' => $type,
-                'price' => $price];
+                                                 'price' => $price];
         }
 
         return View::make('invoice.web', ['invoiceInfo' => $invoiceInfo,

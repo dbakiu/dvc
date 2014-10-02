@@ -23,7 +23,9 @@ class SessionController extends \BaseController {
             Auth::user();
             return Redirect::to('home');
         }
-        return View::make('home.login');
+        else {
+            return Redirect::to('login')->with('message', 'Wrong user name and/or password.');
+        }
     }
 
     public function destroy(){

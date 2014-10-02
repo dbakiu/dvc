@@ -5,6 +5,10 @@
 
 
 <div class="invoice_form_wrapper">
+    @if( null !== Session::get('message'))
+         <div class="alert alert-danger" role="alert">   {{  Session::pull('message') }} </div>
+    @endif
+
     <p class="center_form_title">Invoice number: {{ $invoiceNumber }}</p>
     {{ Form::open(['route' => 'invoice.store']) }}
     <div class="invoice_info">
@@ -27,18 +31,15 @@
 
     <div class="invoice_info">
     <span class="invoice_left">
-    {{ Form::label('vehicle_fk', 'Vehicle type')  }}<br/>
-    {{ Form::label('quantity', 'Quantity')  }}<br/>
     {{ Form::label('valeted_date', 'Valeted on')  }}<br/>
+    {{ Form::label('quantity', 'Quantity')  }}<br/>
+    {{ Form::label('vehicle_fk', 'Vehicle type')  }}<br/>
     </span>
 
     <span class="invoice_right">
-    {{ Form::select('vehicle_fk', $vehiclesList, null, ['id' => 'vehicle_fk']  ) }} <br/>
-
-    {{ Form::text('quantity', null, ['id' => 'quantity', 'placeholder' => 'Quantity']) }} <br/>
-
     {{ Form::text('valeted_date', null, ['id' => 'valeted_date', 'placeholder' => 'Date']) }} <br/>
-
+    {{ Form::text('quantity', null, ['id' => 'quantity', 'placeholder' => 'Quantity']) }} <br/>
+    {{ Form::select('vehicle_fk', $vehiclesList, null, ['id' => 'vehicle_fk']  ) }} <br/>
     {{ Form::select('vehicles_pricelist', $vehiclesPricelist, null, ['id' => 'vehicles_pricelist', 'class' => 'hidden']  ) }}
     </span>
     <div class="clear"></div>

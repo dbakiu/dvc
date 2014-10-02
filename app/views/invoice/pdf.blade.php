@@ -68,7 +68,7 @@
                 @endif
             <tr>
                 <td>{{ $element->quantity }}</td>
-                <td>{{ $element->quantity . ' ' . $carsStr . ' valeted on ' . $element->date . ' - ' .  $elementData[$element->vehicle_fk]['type'] }}</td>
+                <td>{{ $element->quantity . ' ' . $carsStr . ' valeted on ' . date('d/m/Y', strtotime($element->date)) . ' - ' .  $elementData[$element->vehicle_fk]['type'] }}</td>
                 <td>{{ '£' . $elementData[$element->vehicle_fk]['price'] }}</td>
                 <td>{{ '£' . $element->quantity *  $elementData[$element->vehicle_fk]['price'] }}</td>
 

@@ -54,12 +54,12 @@ class Vehicle extends Eloquent implements UserInterface, RemindableInterface {
     }
 
     public static function getPriceForVehicle($id){
-        $price = Vehicle::where('id', '=', $id)->pluck('price');
+        $price = Vehicle::withTrashed()->where('id', '=', $id)->pluck('price');
         return $price;
     }
 
     public static function getEmployeesCut($id){
-        $price = Vehicle::where('id', '=', $id)->pluck('employee_percentage');
+        $price = Vehicle::withTrashed()->where('id', '=', $id)->pluck('employee_percentage');
         return $price;
     }
 

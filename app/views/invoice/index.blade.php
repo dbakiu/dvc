@@ -9,7 +9,7 @@
               <th>Invoice nr.</th>
               <th>View</th>
               <th>Download</th>
-              <th>Company</th>
+              <th>Employee</th>
               <th>Date</th>
               <th>Total amount</th>
               <th>Delete<th>
@@ -22,7 +22,16 @@
             <td> {{ $invoice['invoice_number'] }} </td>
             <td> {{ link_to_route('invoice.show', 'View', $invoice['id'] ) }} </td>
              <td> {{ link_to_route('invoice.download', 'Download', $invoice['id'] ) }} </td>
-             <td> {{ $invoice['bill_to'] }} </td>
+
+             <?php
+               echo "<td>";
+                    foreach($employeesList as $employee){
+                        if($employee->id == $invoice->employee_fk)
+                           echo $employee->name;
+                    }
+               echo "</td>";
+             ?>
+
              <td> {{  date("d/m/Y", strtotime($invoice['date'])) }} </td>
              <td> {{ '£' . $invoice['total'] }} </td>
               <td>

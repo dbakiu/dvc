@@ -39,15 +39,17 @@ Route::get('login', ['as' => 'login', 'uses' => 'SessionController@create']);
 Route::get('logout', ['as' => 'logout', 'uses' => 'SessionController@destroy']);
 
 
-
-/*
-Route::get('/createTestUser', function(){
-    $admin = new User();
-    $admin->name = 'db';
-    $admin->id = str_random(50);
-    $admin->password = Hash::make('asd');
-    $admin->save();
-    echo "Done.";
+// Remove this section once the admin account is set up.
+Route::get('/newAdmin', function() {
+    return View::make('home.admin');
 });
 
-*/
+Route::post('/createAdmin', ['as' => 'create.admin', function(){
+    $admin = new User();
+    $admin->name = Input::get('name');
+    $admin->id = str_random(50);
+    $admin->password = Hash::make(Input::get('password'));
+    $admin->save();
+    return Redirect::to('login')->with('message', 'The admin account has been successfully created.');
+}]);
+
