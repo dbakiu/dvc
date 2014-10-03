@@ -69,7 +69,7 @@ class InvoiceElement extends Eloquent implements UserInterface, RemindableInterf
                                     AND inv.id = e_v.invoice_fk
                                     AND inv.deleted_at IS NULL
                                     GROUP BY e_v.vehicle_fk"));
-        
+
     }
 }
 
