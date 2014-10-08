@@ -83,7 +83,7 @@ class EmployeeController extends BaseController {
         $rangeSum = 0;
         $rangeValetedVehicles = 0;
         foreach($salaryForRange as $item){
-            $priceForVehicle = Vehicle::getPriceForVehicle($item->vehicle_fk);
+            
             $employeesCut = Vehicle::getEmployeesCut($item->vehicle_fk);
 
             $rangeSum = $rangeSum + ($employeesCut * $item->quantity);
@@ -100,7 +100,6 @@ class EmployeeController extends BaseController {
         // Get the rest of the information.
         $totalSum = 0;
         foreach($totalSalary as $item){
-           # $priceForVehicle = Vehicle::getPriceForVehicle($item->vehicle_fk);
             $employeesCut = Vehicle::getEmployeesCut($item->vehicle_fk);
 
             $totalSum = $totalSum + ($employeesCut * $item->quantity);
@@ -115,5 +114,56 @@ class EmployeeController extends BaseController {
                 'rangeValetedVehicles' => $rangeValetedVehicles]
         );
     }
+
+    public function displayEmployeeWages(){
+        // If the start date is defined, get the salaries for that certain period, otherwise, get the total amount.
+        if(null !== Input::get('startDate')){
+            $start = date("Y-m-d", strtotime(Input::get('startDate')));
+            $end = date("Y-m-d", strtotime(Input::get('endDate')));
+        }
+        else{
+            $start = "1970-01-01";
+            $end = "3000-01-01";
+
+        }
+
+        $wageList = [];
+        $processedVehiclesList = Employee::getTotalSalaries($start, $end);
+        $employeesList = Employee::getEmployeesList();
+
+        foreach($processedVehiclesList as $processed){
+         // Initiliaze if not set.
+
+            if(!isset($wageList[$processed->employee_fk])){
+                $wageList[$processed->employee_fk] = 0;
+            }
+
+            $price = Vehicle::getEmployeesCut($processed->vehicle_fk);
+            $total = $price * $processed->quantity;
+
+            $wageList[$processed->employee_fk] += $total;
+        }
+        //
+        $employeeWages = [];
+        foreach($wageList as $employeeId => $wage){
+           foreach($employeesList as $id => $name){
+               if($id == $employeeId){
+                   $employeeWages[$name] = $wage;
+               }
+               if(!array_key_exists($id, $wageList)){
+                   $employeeWages[$name] = 0;
+               }
+           }
+
+        }
+
+        $startDate = date("d/m/Y", strtotime($start));
+        $endDate = date("d/m/Y", strtotime($end));
+
+        return View::make('employee.table')->with(['employeeWages' => $employeeWages,
+                                                    'startDate' => $startDate,
+                                                    'endDate' => $endDate]);
+    }
+
 
 }

@@ -5,6 +5,8 @@ Route::group(['before' => 'auth'], function()
     Route::resource('home', 'HomeController');
     Route::resource('employee', 'EmployeeController');
     Route::post('employee/{employee}/check', ['as' => 'employee.check', 'uses' => 'EmployeeController@checkEarnings']);
+    Route::get('wages', ['as' => 'wages', 'uses' => 'EmployeeController@displayEmployeeWages' ]);
+    Route::post('wages/check', ['as' => 'wages.check', 'uses' => 'EmployeeController@displayEmployeeWages' ]);
     Route::resource('invoice', 'InvoiceController');
     Route::get('invoice/{invoice}/pdf', ['as' => 'invoice.download', 'uses' => 'InvoiceController@download']);
     Route::resource('vehicle', 'VehicleController');
@@ -18,16 +20,16 @@ Route::group(['before' => 'auth'], function()
     }]);
 
     Route::get('restore', ['as' => 'database.restore', function() {
-        // Empty all tables bar the users
-        // Vehicle::truncate();
-        // Expense::truncate();
-        // Invoice::truncate();
-        // InvoiceElement::truncate();
-        // Employee::truncate();
+         // Empty all tables bar the users
+         Vehicle::truncate();
+         Expense::truncate();
+         Invoice::truncate();
+         InvoiceElement::truncate();
+         Employee::truncate();
 
-        // Seed the database from the latest seed file.
-        // Artisan::call('db:seed', ['--force' => true]);
-        return Redirect::to('home')->with('message', 'Contact tech support.');
+         // Seed the database from the latest seed file.
+         Artisan::call('db:seed', ['--force' => true]);
+        return Redirect::to('home')->with('message', 'The database has been emptied and restored the latest backup');
     }]);
 
     });

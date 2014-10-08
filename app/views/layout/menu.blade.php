@@ -36,6 +36,11 @@
                        <li><a href="{{ route('employee.create') }}">Add employee</a></li>
                      </ul>
                 </li>
+
+                <li>
+                    <a href="{{ route('wages'); }}">Wages</a>
+                </li>
+
                 <li class="dropdown">
                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Expenses<span class="caret"></span></a>
                      <ul class="dropdown-menu" role="menu">
