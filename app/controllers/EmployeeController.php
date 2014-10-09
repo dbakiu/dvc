@@ -12,18 +12,24 @@ class EmployeeController extends BaseController {
     }
 
     public function store(){
-        $employeeData['name'] = Input::get('name');
         $employeeData['id'] = str_random(50);
+        $employeeData['name'] = Input::get('name');
+        $employeeData['address'] = Input::get('address');
+        $employeeData['referenceNumber'] = Input::get('referenceNumber');
+        $employeeData['insuranceNumber'] = Input::get('insuranceNumber');
+        $employeeData['dob'] = Input::get('dob');
+        $employeeData['note'] = Input::get('note');
+
 
         $employee = new Employee();
 
         $result = $employee->addEmployee($employeeData);
 
         if($result == true) {
-            return $this->index();
+           return Redirect::to('employee')->with('message', 'The employee has been added.');
         }
         else{
-            return $this->index()->with('message', 'The employee could not be added');
+            return Redirect::to('employee')->with('message', 'The employee could not be added.');
         }
     }
 
@@ -35,7 +41,6 @@ class EmployeeController extends BaseController {
         $totalSum = 0;
         foreach($totalSalary as $item){
             $employeesCut = Vehicle::getEmployeesCut($item->vehicle_fk);
-            #echo $totalSum . ' + ' . $employeesCut . ' * ' . $item->quantity . ' = ' .($employeesCut * $item->quantity) .  '<br/>';
             $totalSum = $totalSum + ($employeesCut * $item->quantity);
         }
 
@@ -53,6 +58,11 @@ class EmployeeController extends BaseController {
     public function update($id){
         $employee = Employee::find($id);
         $employee->name = Input::get('name');
+        $employee->address = Input::get('address');
+        $employee->reference_number = Input::get('referenceNumber');
+        $employee->insurance_number = Input::get('insuranceNumber');
+        $employee->dob = Input::get('dob');
+        $employee->note = Input::get('note');
         $employee->save();
 
         return $this->show($id);
@@ -83,7 +93,7 @@ class EmployeeController extends BaseController {
         $rangeSum = 0;
         $rangeValetedVehicles = 0;
         foreach($salaryForRange as $item){
-            
+
             $employeesCut = Vehicle::getEmployeesCut($item->vehicle_fk);
 
             $rangeSum = $rangeSum + ($employeesCut * $item->quantity);

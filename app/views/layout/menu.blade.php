@@ -26,7 +26,7 @@
                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Vehicles<span class="caret"></span></a>
                      <ul class="dropdown-menu" role="menu">
                        <li><a href="{{ route('vehicle.index') }}">Vehicles list</a></li>
-                       <li><a href="{{ route('vehicle.create') }}">Add vehicle type</a></li>
+                       <li><a href="{{ route('vehicle.create') }}">Add vehicle description</a></li>
                      </ul>
                 </li>
                 <li class="dropdown">

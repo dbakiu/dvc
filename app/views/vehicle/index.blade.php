@@ -6,9 +6,9 @@
     <p class="center_form_title">Vehicle pricelist</p>
     <table class="flat_table">
         <thead>
-        <th>Vehicle type</th>
+        <th>Vehicle description</th>
         <th>Price</th>
-        <th>Employee's percentage</th>
+        <th>Employees profit</th>
         <th>Edit</th>
         <th>Delete</th>
         </thead>

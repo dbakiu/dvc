@@ -11,8 +11,16 @@
         @endif
 
         <p class="employee_profile_title">{{ 'Employee: ' . $employeeData->name }} </p>
-        {{ 'In total, <b>' . $employeeData->name . '</b> has valeted <b>' . $processedVehicles  . ' ' . $carsStr . '</b>.' }}
-        {{ 'Total sum earned: <b>£' . $totalSum . '</b>' }}
+
+        <p class="center_form_wrapper">
+        {{ '<b> Address: </b> ' . $employeeData->address  }} <br/>
+        {{ '<b> Insurance number: </b>' . $employeeData->insurance_number }} <br/>
+        {{ '<b> Reference number: </b>' . $employeeData->reference_number  }} <br/>
+        {{ '<b> D.O.B.: </b>' . $employeeData->dob  }} <br/>
+        {{ '<b> Note: </b>' . $employeeData->note  }} <br/>
+        
+        </p>
+
         @endif
         <hr/>
 

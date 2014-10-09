@@ -3,14 +3,14 @@
 {{ HTML::script('js/vehicle-script.js') }}
 
 <div class="center_form_wrapper">
-    <p class="center_form_title">new vehicle type</p>
+    <p class="center_form_title">new vehicle description</p>
     {{ Form::open( ['route' => 'vehicle.store'] ) }}
 
     {{ Form::text('type', null, ['placeholder' => 'Name'] ) }}
     <br />
     £{{ Form::text('price', null, ['placeholder' => 'Price', 'id' => 'price']) }}
     <br />
-    £{{ Form::text('employee_percentage', null, ['placeholder' => 'Employees cut', 'id' => 'employee_percentage']) }}
+    £{{ Form::text('employee_percentage', null, ['placeholder' => 'Employees profit', 'id' => 'employee_percentage']) }}
     <br />
     <br />
 

@@ -20,7 +20,12 @@ class Employee extends Eloquent implements UserInterface, RemindableInterface {
 
     protected $fillable = array(
         'id',
-        'name');
+        'name',
+        'address',
+        'reference_number',
+        'insurance_number',
+        'dob',
+        'note');
 
 
     /**
@@ -34,6 +39,11 @@ class Employee extends Eloquent implements UserInterface, RemindableInterface {
     public function addEmployee($employeeData){
         $this->name = $employeeData['name'];
         $this->id = $employeeData['id'];
+        $this->address = $employeeData['address'];
+        $this->reference_number = $employeeData['referenceNumber'];
+        $this->insurance_number = $employeeData['insuranceNumber'];
+        $this->dob = $employeeData['dob'];
+        $this->note = $employeeData['note'];
         $result = $this->save();
 
         return $result;
