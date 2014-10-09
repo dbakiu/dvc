@@ -37,7 +37,7 @@ class BalanceController extends BaseController {
 
         $totalBalance = $totalIncome - $totalExpenses;
         $totalBalance = number_format((float)$totalBalance, 2, '.', '');
-        dd($totalExpensesVat);
+
         return View::make('balance.index')->with(['totalExpenses' => $totalExpenses,
                                                     'totalIncome' => $totalIncome,
                                                     'totalBalance' => $totalBalance,

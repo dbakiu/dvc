@@ -55,7 +55,7 @@
                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Backup<span class="caret"></span></a>
                      <ul class="dropdown-menu" role="menu">
                        <li><a href="{{ route('database.backup') }}">Backup database</a></li>
-                       <li><a href="{{ route('database.restore') }}">Restore database</a></li>
+                       <li><a href="{{ route('database.restore') }}"   onclick="return confirm('The database will be emptied and restored from the latest backup. Are you sure you want to do that?');">Restore database</a></li>
                      </ul>
                 </li>
             </ul>

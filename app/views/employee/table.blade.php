@@ -3,7 +3,7 @@
 
 {{ HTML::script('/js/employee-script.js') }}
 <div class="center_form_wrapper">
-        @if($startDate != '1970-01-01')
+        @if($startDate != '01/01/1970')
           <p class="center_form_title">Wages earned from {{ $startDate }} to {{ $endDate }}</p>
         @else
           <p class="center_form_title">Total wages earned</p>

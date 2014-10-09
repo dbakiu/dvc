@@ -29,7 +29,7 @@ Route::group(['before' => 'auth'], function()
 
          // Seed the database from the latest seed file.
          Artisan::call('db:seed', ['--force' => true]);
-        return Redirect::to('home')->with('message', 'The database has been emptied and restored the latest backup');
+        return Redirect::to('home')->with('message', 'The database has been emptied and has been restored from the latest backup.');
     }]);
 
     });
