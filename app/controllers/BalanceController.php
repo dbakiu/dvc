@@ -11,7 +11,9 @@ class BalanceController extends BaseController {
         $totalIncome = Invoice::getTotalIncome();
         $totalIncomeVat = $totalIncome * 0.20;
 
-        $totalBalance = $totalIncome - $totalExpenses;
+        $totalWages = Employee::getTotalSalariesSum('1970-01-01', '3000-01-01');
+
+        $totalBalance = $totalIncome - ($totalExpenses + $totalWages);
         $totalBalance = number_format((float)$totalBalance, 2, '.', '');
 
 
@@ -19,7 +21,8 @@ class BalanceController extends BaseController {
                                                     'totalIncome' => $totalIncome,
                                                     'totalIncomeVat' => $totalIncomeVat,
                                                     'totalExpensesVat' => $totalExpensesVat,
-                                                    'totalBalance' => $totalBalance]);
+                                                    'totalBalance' => $totalBalance,
+                                                    'totalWages' => $totalWages]);
     }
 
     public function checkBalance(){
@@ -35,16 +38,20 @@ class BalanceController extends BaseController {
         $totalExpenses = Expense::getTotalExpensesFromTo($startDate, $endDate);
         $totalExpensesVat = $totalExpenses * 0.20;
 
-        $totalBalance = $totalIncome - $totalExpenses;
+        $totalWages = Employee::getTotalSalariesSum($startDate, $endDate);
+
+        $totalBalance = $totalIncome - ($totalExpenses + $totalWages);
         $totalBalance = number_format((float)$totalBalance, 2, '.', '');
+
 
         return View::make('balance.index')->with(['totalExpenses' => $totalExpenses,
                                                     'totalIncome' => $totalIncome,
                                                     'totalBalance' => $totalBalance,
                                                     'totalIncomeVat' => $totalIncomeVat,
                                                     'totalExpensesVat' => $totalExpensesVat,
-                                                    'startDate' => Input::get('startDate'),
-                                                    'endDate' => Input::get('endDate')
+                                                    'startDate' => $start,
+                                                    'endDate' => $end,
+                                                    'totalWages' => $totalWages
                                                     ]);
     }
 

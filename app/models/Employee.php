@@ -71,4 +71,9 @@ class Employee extends Eloquent implements UserInterface, RemindableInterface {
     public static function getTotalSalaries($start, $end){
         return InvoiceElement::getProcessedVehiclesFromTo($start, $end);
     }
+
+    public static function getTotalSalariesSum($start, $end){
+        return InvoiceElement::getProcessedVehiclesSum($start, $end);
+    }
+
 }

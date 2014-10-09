@@ -19,7 +19,7 @@
         </a>
         <a href="{{ route('expense.index') }}">
             <div class="balance_out btn btn-info">
-                <span class="total_sum_out">OUT:  £{{ $totalExpenses }}</span>
+                <span class="total_sum_out">OUT:  £{{  $totalExpenses + $totalWages }}</span>
             </div>
         </a>
 
@@ -61,10 +61,15 @@
                 <td> £{{ $totalExpensesVat }}</td>
             </tr>
             <tr>
+                <td>Wages:</td>
+                <td></td>
+                <td>£{{ $totalWages }}</td>
+            </tr>
+            <tr>
                 <td>Total:</td>
                 <td>£{{ $totalIncome }}</td>
-                <td>£{{ $totalExpenses }}</td>
-                </tr>
+                <td>£{{ $totalExpenses + $totalWages }}</td>
+            </tr>
         </tbody>
         </table>
          <p class="center_form_title">Check balance</p>

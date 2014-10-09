@@ -83,5 +83,23 @@ class InvoiceElement extends Eloquent implements UserInterface, RemindableInterf
 
     }
 
+    public static function getProcessedVehiclesSum($start, $end){
+        $processedList = DB::select(DB::raw("SELECT e_v.vehicle_fk, COUNT(*) as quantity
+                                    FROM employees_vehicles AS e_v, invoices AS inv
+                                    WHERE inv.date >= '$start'
+                                    AND inv.date <= '$end'
+                                    AND inv.id = e_v.invoice_fk
+                                    AND inv.deleted_at IS NULL
+                                    GROUP BY e_v.vehicle_fk"));
+        $totalSum = 0;
+        foreach($processedList as $process){
+            $price = Vehicle::getEmployeesCut($process->vehicle_fk);
+            $total = $price * $process->quantity;
+            $totalSum += $total;
+        }
+
+        return $totalSum;
+    }
+
 }
 
