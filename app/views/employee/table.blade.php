@@ -28,7 +28,8 @@
             </tbody>
          </table>
 
-
+    {{ "Total wages: £" . $totalEmployeeWages }}
+    <hr/>
     {{ Form::open([ 'route' => ['wages.check'], 'method' => 'post' ] ) }}
          {{ Form::label('startDate', 'Start date:') }}
          {{ Form::text('startDate', null, ['id' => 'start_date']) }}

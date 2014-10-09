@@ -140,7 +140,7 @@ class EmployeeController extends BaseController {
         $wageList = [];
         $processedVehiclesList = Employee::getTotalSalaries($start, $end);
         $employeesList = Employee::getEmployeesList();
-
+        $totalEmployeeWagesSum = 0;
         foreach($processedVehiclesList as $processed){
          // Initiliaze if not set.
 
@@ -152,6 +152,7 @@ class EmployeeController extends BaseController {
             $total = $price * $processed->quantity;
 
             $wageList[$processed->employee_fk] += $total;
+            $totalEmployeeWagesSum += $total;
         }
         //
         $employeeWages = [];
@@ -166,11 +167,12 @@ class EmployeeController extends BaseController {
            }
 
         }
-
+        arsort($employeeWages);
         $startDate = date("d/m/Y", strtotime($start));
         $endDate = date("d/m/Y", strtotime($end));
 
         return View::make('employee.table')->with(['employeeWages' => $employeeWages,
+                                                    'totalEmployeeWages' => $totalEmployeeWagesSum,
                                                     'startDate' => $startDate,
                                                     'endDate' => $endDate]);
     }

@@ -18,7 +18,6 @@
         {{ '<b> Reference number: </b>' . $employeeData->reference_number  }} <br/>
         {{ '<b> D.O.B.: </b>' . $employeeData->dob  }} <br/>
         {{ '<b> Note: </b>' . $employeeData->note  }} <br/>
-        
         </p>
 
         @endif

@@ -14,6 +14,8 @@
         <br/>
         {{ Form::label('sum', 'Total sum') }}
         <br/>
+        {{ Form::label('vat_included', 'Vat included?') }}
+        <br/>
         {{ Form::label('date', 'Date') }}
     </span>
 
@@ -23,6 +25,8 @@
         {{ Form::text('item', null, ['placeholder' => 'Item name', 'class' => 'long_input'] ) }}
         <br/>
         {{ Form::text('sum', null, ['placeholder' => 'Sum'] ) }}
+        <br/>
+        {{ Form::checkbox('vat_included', 'yes') }}
         <br/>
         {{ Form::text('date', null, ['placeholder' => 'Date'] ) }}
         <br/>

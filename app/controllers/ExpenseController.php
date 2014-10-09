@@ -14,12 +14,16 @@ class ExpenseController extends BaseController {
     }
 
     public function store(){
-
         $expenseId = str_random(50);
         $expenseNumber = Expense::getNewExpenseNumber();
         $companyName = Input::get('companyName');
         $item = Input::get('item');
         $sum = floatval(Input::get('sum'));
+
+        if(Input::get('vat_included') != 'yes') {
+            $sum = $sum * 1.20;
+        }
+
         $date = date('Y-m-d', strtotime(Input::get('date')));
 
         $expense = new Expense();

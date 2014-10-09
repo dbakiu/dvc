@@ -5,7 +5,7 @@
 
 <div class="balance_page">
     @if(isset($startDate))
-        <p class="center_form_title">Balance for {{ $startDate }} to {{ $endDate }}</p>
+        <p class="center_form_title">Balance from {{ $startDate }} to {{ $endDate }}</p>
     @else
             <p class="center_form_title">Total balance</p>
     @endif
@@ -15,8 +15,8 @@
             <div class="balance_in btn btn-primary">
                 <span class="total_sum_in">IN:  £{{ $totalIncome }}</span>
             </div>
-        </a>
 
+        </a>
         <a href="{{ route('expense.index') }}">
             <div class="balance_out btn btn-info">
                 <span class="total_sum_out">OUT:  £{{ $totalExpenses }}</span>
@@ -41,6 +41,32 @@
         @endif
 
         <div class="employee_form_wrapper">
+            <br/>
+            <h5>DETAILED INFORMATION</h5>
+        <table class="flat_table">
+        <thead>
+            <th></th>
+            <th>In</th>
+            <th>Out</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Subtotal:</td>
+                <td> £{{ $totalIncome * 0.80 }}</td>
+                <td> £{{ $totalExpenses * 0.80 }}</td>
+            </tr>
+            <tr>
+                <td>VAT:</td>
+                <td> £{{ $totalIncomeVat }}</td>
+                <td> £{{ $totalExpensesVat }}</td>
+            </tr>
+            <tr>
+                <td>Total:</td>
+                <td>£{{ $totalIncome }}</td>
+                <td>£{{ $totalExpenses }}</td>
+                </tr>
+        </tbody>
+        </table>
          <p class="center_form_title">Check balance</p>
         {{ Form::open([ 'route' => ['balance.check'], 'method' => 'post' ] ) }}
             {{ Form::label('startDate', 'Start date:') }}
