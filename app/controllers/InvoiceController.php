@@ -122,8 +122,8 @@ class InvoiceController extends BaseController {
         $elementData = [];
 
         foreach($invoiceElements as $element){
-            $price = Vehicle::where('id', '=', $element->vehicle_fk)->pluck('price');
-            $type = Vehicle::where('id', '=', $element->vehicle_fk)->pluck('type');
+            $price = Vehicle::withTrashed()->where('id', '=', $element->vehicle_fk)->pluck('price');
+            $type = Vehicle::withTrashed()->where('id', '=', $element->vehicle_fk)->pluck('type');
 
             $elementData[$element->vehicle_fk] = ['type' => $type,
                 'price' => $price];

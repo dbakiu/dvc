@@ -8,8 +8,8 @@ body {
 
 .pdf_wrapper{
     width:720px;
-    height:1040px; /* Has to be a fixed value, otherwise the pdf rendering gets weird. */
-    border:3px solid #000000;
+    /*   height:1040px; /* Has to be a fixed value, otherwise the pdf rendering gets weird. */
+    /* border:3px solid #000000;*/
     margin:35px;
 }
 
@@ -73,11 +73,11 @@ body {
     width:100%;
 }
 .invoice_elements{
-    height:570px;
+    /* height:570px; */
 }
 
 .invoice_elements_pdf{
-    height:560px;
+    /* height:560px; */
 }
 
 .pdf_table{
@@ -106,13 +106,13 @@ body {
 .pdf_footer {
     width:950px;
     padding:10px;
-    margin-top:-40px;
+    margin-top:10px;
+    margin-left:5px;
 }
 
 .pdf_footer_pdf{
     width:700px;
     padding:10px;
-    padding-top:-10;
     margin-left:40px;
 
 }
@@ -205,4 +205,10 @@ body {
     width:100%;
     height:10px;
     background:black;
+}
+
+@media print{
+    .pdf_wrapper{
+        width:100%;
+    }
 }

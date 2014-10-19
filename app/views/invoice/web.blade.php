@@ -1,6 +1,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 {{ HTML::style('css/style_pdf.css') }}
-<div class="pdf_wrapper pdf_web">
+<div class="pdf_wrapper pdf_web" style="page-break-after:always;">
     <div class="pdf_header_wrapper">
 
        <span class="header_logo">
@@ -63,9 +63,9 @@
 
          @foreach($invoiceElements as $element)
             @if($element->quantity > 1)
-               <?php $carsStr = 'cars'; ?>
+               <?php $carsStr = 'Cars'; ?>
             @else
-                <?php $carsStr = 'car'; ?>
+                <?php $carsStr = 'Car'; ?>
             @endif
 
             <tr>

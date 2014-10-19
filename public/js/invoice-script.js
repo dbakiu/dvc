@@ -39,16 +39,25 @@ $(document).ready(function(){
 
         if(quantity > 1) {
             var line_total = quantity * unit_price;
-            quantityStr = 'cars';
+            quantityStr = 'Cars';
         }
         else{
             quantity = 1;
-            quantityStr = 'car';
+            quantityStr = 'Car';
             var line_total = unit_price;
         }
 
+        // Change the date format for eye-candy reasons
+        if(date) {
+            dateArr = date.split('/');
+            newDate = dateArr[1] + '/' + dateArr[0] + '/' + dateArr[2];
+        }
+        else{
+            newDate = '';
+        }
+
         $("#invoice_elements").append('<tr><td>' + quantity + '</td>'
-                                    + '<td>' + quantity + ' ' + quantityStr  + ' valeted on ' + date + ' - ' + vehicle_type + '</td>'
+                                    + '<td>' + quantity + ' ' + quantityStr  + ' valeted on ' + newDate + ' - ' + vehicle_type + '</td>'
                                     + '<td>£' + unit_price + '</td>'
                                         + '<td>£' + line_total + '</td>'
                                     + '<td>' + '<input type="button" id="' + counter + '" class="delete_element" value="X">' + '</td>'

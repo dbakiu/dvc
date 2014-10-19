@@ -2,7 +2,7 @@
 
 
 {{ HTML::style('css/style_pdf.css') }}
-<div class="pdf_wrapper">
+<div class="pdf_wrapper" style="page-break-after:always;">
     <div class="pdf_header_wrapper">
 
        <span class="header_logo">
@@ -62,9 +62,9 @@
          @foreach($invoiceElements as $element)
 
                 @if($element->quantity == 1)
-                    <?php $carsStr = 'car' ?>
+                    <?php $carsStr = 'Car' ?>
                 @else
-                    <?php $carsStr = 'cars' ?>
+                    <?php $carsStr = 'Cars' ?>
                 @endif
             <tr>
                 <td>{{ $element->quantity }}</td>
@@ -84,6 +84,7 @@
         </tbody>
 
     </table>
+    <div class="clear"></div>
 
     </div>
 
