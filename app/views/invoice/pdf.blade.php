@@ -1,6 +1,4 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-
-
 {{ HTML::style('css/style_pdf.css') }}
 <div class="pdf_wrapper" style="page-break-after:always;">
     <div class="pdf_header_wrapper">
@@ -68,7 +66,7 @@
                 @endif
             <tr>
                 <td>{{ $element->quantity }}</td>
-                <td>{{ $element->quantity . ' ' . $carsStr . ' valeted on ' . date('d/m/Y', strtotime($element->date)) . ' - ' .  $elementData[$element->vehicle_fk]['type'] }}</td>
+                <td>{{ $element->quantity . ' ' . $carsStr . ' Valeted On ' . date('d/m/Y', strtotime($element->date)) . ' - ' .  $elementData[$element->vehicle_fk]['type'] }}</td>
                 <td>{{ '£' . $elementData[$element->vehicle_fk]['price'] }}</td>
                 <td>{{ '£' . $element->quantity *  $elementData[$element->vehicle_fk]['price'] }}</td>
 

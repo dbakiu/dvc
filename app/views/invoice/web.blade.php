@@ -10,9 +10,6 @@
        <span class="header_text">
             {{HTML::image('images/header_pdf.png')}}
        </span>
-
-    <div class="clear"></div>
-
     </div>
     <div class="clear"></div>
 
@@ -70,7 +67,7 @@
 
             <tr>
                 <td>{{ $element->quantity }}</td>
-                <td>{{ $element->quantity . ' ' . $carsStr . ' valeted on ' . date('d/m/Y', strtotime($element->date)) . ' - ' . $elementData[$element->vehicle_fk]['type'] }}</td>
+                <td>{{ $element->quantity . ' ' . $carsStr . ' Valeted On ' . date('d/m/Y', strtotime($element->date)) . ' - ' . $elementData[$element->vehicle_fk]['type'] }}</td>
                 <td>{{ '£' .  $elementData[$element->vehicle_fk]['price'] }}</td>
                 <td>{{ '£' . $element->quantity *  $elementData[$element->vehicle_fk]['price'] }}</td>
 
@@ -93,6 +90,7 @@
     <div class="clear"></div>
 
     </div>
+
         <div class="pdf_footer">
         <div class="footer_vat">
             Vat number: 162157815

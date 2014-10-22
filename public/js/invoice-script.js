@@ -10,12 +10,13 @@ $(document).ready(function(){
     });
 
 
-    // Constants
+    // Globals, unfortunately.
     var counter = 1;
     var totalSum = parseFloat(0);
     var subtotal = parseFloat(0);
     var totalVat = parseFloat(0);
     var hiddenVat = parseFloat(1.20);
+    var invoiceCount = 0;
 
     // Functions
     function addElement(){
@@ -57,7 +58,7 @@ $(document).ready(function(){
         }
 
         $("#invoice_elements").append('<tr><td>' + quantity + '</td>'
-                                    + '<td>' + quantity + ' ' + quantityStr  + ' valeted on ' + newDate + ' - ' + vehicle_type + '</td>'
+                                    + '<td>' + quantity + ' ' + quantityStr  + ' Valeted On ' + newDate + ' - ' + vehicle_type + '</td>'
                                     + '<td>£' + unit_price + '</td>'
                                         + '<td>£' + line_total + '</td>'
                                     + '<td>' + '<input type="button" id="' + counter + '" class="delete_element" value="X">' + '</td>'
@@ -81,6 +82,9 @@ $(document).ready(function(){
 
         refreshSubtotalTotal(subtotal, totalSum, totalVat);
         clearFields();
+
+        invoiceCount++;
+        checkInvoiceCount();
     }
 
 
@@ -119,8 +123,26 @@ $(document).ready(function(){
         totalSum = parseFloat(subtotal * hiddenVat);
         totalVat = parseFloat(subtotal * 0.20);
         refreshSubtotalTotal(subtotal, totalSum, totalVat);
+
+        invoiceCount--;
+        checkInvoiceCount();
     }
 
+    function checkInvoiceCount(){
+        if(invoiceCount <= 24){
+            if(! $('#invoice_error').hasClass('hidden')){
+                $('#invoice_error').addClass('hidden');
+            }
+            if($('#add_element').is("disabled") == false){
+                $('#add_element').removeAttr('disabled');
+            }
+        }
+        else{
+            $('#invoice_error').removeClass('hidden');
+            $('#add_element').attr("disabled", "disabled");
+        }
+
+    }
 
     function clearFields(){
         $('#valeted_date').val('');

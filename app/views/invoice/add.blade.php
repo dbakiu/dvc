@@ -43,6 +43,9 @@
     {{ Form::select('vehicles_pricelist', $vehiclesPricelist, null, ['id' => 'vehicles_pricelist', 'class' => 'hidden']  ) }}
     </span>
     <div class="clear"></div>
+
+    <div id="invoice_error" class="alert alert-danger hidden" role="alert">You have reached the invoice limit of 25 rows.<br/>Save the current one and create a new invoice.</div>
+
     {{ Form::button('Add', ['id' => 'add_element', 'class' => 'center_button']) }}
 
     </div>
