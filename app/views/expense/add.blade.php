@@ -16,7 +16,7 @@
         <br/>
         {{ Form::label('vat_included', 'Vat included?') }}
         <br/>
-        {{ Form::label('date', 'Date') }} 
+        {{ Form::label('date', 'Date') }}
     </span>
 
     <span class="invoice_right">

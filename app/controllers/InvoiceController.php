@@ -78,7 +78,7 @@ class InvoiceController extends BaseController {
         $invoiceInfo = Invoice::find($id);
         $invoiceElements = InvoiceElement::getInvoiceElements($id);
 
-        $employeeInfo = Employee::find($invoiceElements[0]->employee_fk);
+        $employeeInfo = Employee::withTrashed()->find($invoiceElements[0]->employee_fk);
 
         $elementData = [];
 
@@ -117,7 +117,7 @@ class InvoiceController extends BaseController {
         $invoiceInfo = Invoice::find($id);
         $invoiceElements = InvoiceElement::getInvoiceElements($id);
 
-        $employeeInfo = Employee::find($invoiceElements[0]->employee_fk);
+        $employeeInfo = Employee::withTrashed()->find($invoiceElements[0]->employee_fk);
 
         $elementData = [];
 
