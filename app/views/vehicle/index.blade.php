@@ -26,7 +26,7 @@
             </td>
 
             <td>
-             {{ $vehicle->employee_percentage . '%'}}
+             {{ '£' . $vehicle->employee_percentage }}
             </td>
 
             <td>

@@ -3,6 +3,8 @@
 
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     {{HTML::style('css/bootstrap.min.css')}}
     {{HTML::style('css/style.css')}}
     {{HTML::style('css/datepicker.css')}}
