@@ -8,7 +8,7 @@
     {{ Form::open( ['route' => 'expense.store'] ) }}
     <div class="expense_info">
     <span class="invoice_left">
-        {{ Form::label('companyName', 'Company') }}
+        <!-- {{ Form::label('companyName', 'Company') }}
         <br/>
         {{ Form::label('name', 'Item name') }}
         <br/>
@@ -16,7 +16,7 @@
         <br/>
         {{ Form::label('vat_included', 'Vat included?') }}
         <br/>
-        {{ Form::label('date', 'Date') }}
+        {{ Form::label('date', 'Date') }} -->
     </span>
 
     <span class="invoice_right">
