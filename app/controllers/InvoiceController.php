@@ -96,6 +96,27 @@ class InvoiceController extends BaseController {
             'employeeInfo' => $employeeInfo]);
     }
 
+    public function show2($id){
+        $invoiceInfo = Invoice::find($id);
+        $invoiceElements = InvoiceElement::getInvoiceElements($id);
+
+        $employeeInfo = Employee::withTrashed()->find($invoiceElements[0]->employee_fk);
+
+        $elementData = [];
+
+        foreach($invoiceElements as $element){
+            $price = Vehicle::withTrashed()->where('id', '=', $element->vehicle_fk)->pluck('price');
+            $type = Vehicle::withTrashed()->where('id', '=', $element->vehicle_fk)->pluck('type');
+
+            $elementData[$element->vehicle_fk] = ['type' => $type,
+                'price' => $price];
+        }
+
+        return View::make('invoice.invoice', ['invoiceInfo' => $invoiceInfo,
+            'invoiceElements' => $invoiceElements,
+            'elementData' => $elementData,
+            'employeeInfo' => $employeeInfo]);
+    }
 
     public function update($id){
 
@@ -130,7 +151,7 @@ class InvoiceController extends BaseController {
         }
 
 
-        $pdf = PDF::loadView('invoice.pdf', ['invoiceInfo' => $invoiceInfo,
+        $pdf = PDF::loadView('invoice.invoice', ['invoiceInfo' => $invoiceInfo,
                                             'invoiceElements' => $invoiceElements,
                                             'elementData' => $elementData,
                                             'employeeInfo' => $employeeInfo]);
