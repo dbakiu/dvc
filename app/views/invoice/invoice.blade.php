@@ -1,6 +1,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 {{ HTML::style('css/style_invoice.css') }}
-<div class="pdf_wrapper pdf_web">
+<div class="container">
+
     <div class="pdf_header_wrapper">
 
        <span class="header_logo">
@@ -12,7 +13,7 @@
        </span>
     </div>
     <div class="clear"></div>
-
+<div class="pdf_wrapper pdf_web">
     <div class="pdf_content_wrapper">
     <div class="invoice_header">
 
@@ -65,19 +66,27 @@
                      @endif
                          <div class="element_wrapper">
                          <p class="body_element qty_elem">
-                            {{ $element->quantity }}
+                             <span class="element_content">{{ ' ' . $element->quantity }}</span>
                          </p>
 
                          <p class="body_element desc_elem">
-                             {{ $element->quantity . ' ' . $carsStr . ' Valeted On ' . date('d/m/Y', strtotime($element->date)) . ' - ' . $elementData[$element->vehicle_fk]['type'] }}
+                             <span class="element_content">{{ ' ' .  $element->quantity . ' ' . $carsStr . ' Valeted On ' . date('d/m/Y', strtotime($element->date)) . ' - ' . $elementData[$element->vehicle_fk]['type'] }}</span>
                          </p>
 
                          <p class="body_element uprice_elem">
-                            {{ '£' .  $elementData[$element->vehicle_fk]['price'] }}
+                         @if($elementData[$element->vehicle_fk]['price'] % 1 == 0)
+                            <span class="element_content">{{ ' ' .  '£' . round($elementData[$element->vehicle_fk]['price'], 1) }}</span>
+                         @else
+                            <span class="element_content">{{ ' ' .  '£' .  number_format($elementData[$element->vehicle_fk]['price'], 1) }}</span>
+                         @endif
                          </p>
 
                          <p class="body_element ltotal_elem">
-                            {{ '£' . $element->quantity *  $elementData[$element->vehicle_fk]['price'] }}
+                         @if(($element->quantity * $elementData[$element->vehicle_fk]['price']) % 1 == 0)
+                            <span class="element_content">{{ ' ' .  '£' .  $element->quantity *  $elementData[$element->vehicle_fk]['price'] }}</span>
+                         @else
+                            <span class="element_content">{{ ' ' .  '£' .  number_format($element->quantity *  $elementData[$element->vehicle_fk]['price'], 1) }}</span>
+                         @endif
                          </p>
                          <br/>
                          </div>
@@ -89,6 +98,16 @@
             <?php
                 $total = $subtotal * 1.20;
                 $vat = $subtotal * 0.20;
+
+                if($vat % 1 != 0){
+                    $vat = number_format($vat, 1);
+                }
+                if($subtotal % 1 != 0){
+                    $subtotal = number_format($subtotal, 1);
+                }
+                if($total % 1 != 0){
+                    $total = number_format($total, 1);
+                }
              ?>
 
 
@@ -118,5 +137,6 @@
         </div>
 
         </div>
-
+          <div class="clear"></div>
+    </div>
 </div>

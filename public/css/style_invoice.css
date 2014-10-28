@@ -5,25 +5,32 @@
 body {
     background: #ffffff;
 }
+.container{
+    width:760px;
+    height:auto;
+    margin:0 auto;
+    margin-top:40px;
+    border:3px solid black;
+}
 
 .pdf_wrapper{
     width:720px;
-    margin:35px;
+    height:auto;
+    padding:20px;
 }
 
-.pdf_web{
-    margin:35px auto !important;
-}
 .pdf_header_wrapper{
     background:#cccceb;
     width:100%;
     height:99px;
     margin:0 auto;
+    border-bottom:3px solid black;
 }
 
 .header_logo{
     float:left;
-    width:100px;
+    width:99px;
+    border-right:3px solid black;
 }
 
 .header_text{
@@ -55,7 +62,7 @@ body {
 
 .invoice_header{
     width:100%;
-    height:130px;
+    height:100px;
 }
 
 .invoice_elements_header{
@@ -141,11 +148,16 @@ body {
     width:106px;
 }
 
+.element_content{
+    margin-left:6px;
+}
+
 /* Funky footer */
 .pdf_footer {
     width:920px;
+    height:80px;
     padding:10px;
-    margin-top:50px;
+    margin-top:20px;
     margin-left:5px;
     text-align:center;
 }
@@ -179,6 +191,9 @@ body {
 
 .special{
     border:1px solid black;
+    width:70px;
+    font-size:16px;
+    text-align:left !important;
 }
 
 .footer_vat{
