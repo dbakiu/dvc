@@ -97,23 +97,6 @@ class InvoiceController extends BaseController {
     }
 
 
-
-    public function update($id){
-
-    }
-
-    public function destroy($id){
-        $targetInvoice = Invoice::find($id);
-        if($targetInvoice){
-            $targetInvoice->delete();
-            InvoiceElement::where('invoice_fk', '=', $id)->delete();
-            return $this->index();
-         }
-        else{
-            return $this->index();
-        }
-    }
-
     public function download($id){
         $invoiceInfo = Invoice::find($id);
         $invoiceElements = InvoiceElement::getInvoiceElements($id);
@@ -132,9 +115,22 @@ class InvoiceController extends BaseController {
 
 
         $pdf = PDF::loadView('invoice.invoice', ['invoiceInfo' => $invoiceInfo,
-                                            'invoiceElements' => $invoiceElements,
-                                            'elementData' => $elementData,
-                                            'employeeInfo' => $employeeInfo]);
-         return $pdf->download($invoiceInfo->date . ' - ' . $invoiceInfo->bill_to . '.pdf');
+            'invoiceElements' => $invoiceElements,
+            'elementData' => $elementData,
+            'employeeInfo' => $employeeInfo]);
+        return $pdf->download($invoiceInfo->date . ' - ' . $invoiceInfo->bill_to . '.pdf');
     }
+
+    public function destroy($id){
+        $targetInvoice = Invoice::find($id);
+        if($targetInvoice){
+            $targetInvoice->delete();
+            InvoiceElement::where('invoice_fk', '=', $id)->delete();
+            return $this->index();
+         }
+        else{
+            return $this->index();
+        }
+    }
+
 }

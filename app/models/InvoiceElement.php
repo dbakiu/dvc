@@ -47,7 +47,8 @@ class InvoiceElement extends Eloquent implements UserInterface, RemindableInterf
                                   FROM employees_vehicles
                                   WHERE invoice_fk = '$id'
                                   AND deleted_at IS NULL
-                                  GROUP BY vehicle_fk, date")
+                                  GROUP BY vehicle_fk, date
+                                  ORDER BY date ASC")
                         );
     }
 
