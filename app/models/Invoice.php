@@ -37,7 +37,7 @@ class Invoice extends Eloquent implements UserInterface, RemindableInterface {
 	protected $hidden = array('remember_token');
 
     public static function getNewInvoiceNumber(){
-        $lastInvoiceNumber = Invoice::orderBy('created_at', 'desc')->pluck('invoice_number');
+        $lastInvoiceNumber = Invoice::withTrashed()->orderBy('created_at', 'desc')->pluck('invoice_number');
         return $lastInvoiceNumber + 1;
     }
 
