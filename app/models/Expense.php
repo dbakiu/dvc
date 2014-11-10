@@ -46,12 +46,13 @@ class Expense extends Eloquent implements UserInterface, RemindableInterface {
     }
 
     public static function getNewExpenseNumber(){
-        $lastExpenseNumber = Expense::orderBy('created_at', 'ASC')->pluck('expense_number');
+        $lastExpenseNumber = Expense::orderBy('created_at', 'desc')->pluck('expense_number');
         if($lastExpenseNumber) {
             return $lastExpenseNumber+1;
         }
         else{
-            return $lastExpenseNumber+2;
+            $lastExpenseNumber = 1;
+            return $lastExpenseNumber;
         }
     }
 
